@@ -32,15 +32,5 @@ public class PlayerLegacy : MonoBehaviour
         }
     }
 
-    public void SendAnswers(string firstAnswer, string secondAnswer)
-    {
-        view.RPC("RPC_SendAnswers", RpcTarget.AllViaServer);
-    }
-
-    [PunRPC]
-    void RPC_SendAnswers(string firstAnswer, string secondAnswer)
-    {
-        answers.Add(firstAnswer);
-        answers.Add(secondAnswer);
-    }
+    
 }
