@@ -51,8 +51,22 @@ public class GameFSM : StateMachine
     public int RoundMax = 3;
     public int NumPlayers = 4;
 
+    public static GameFSM Instance { get; private set; }
+
     private void Awake()
     {
+        // If there is an instance, and it's not me, delete myself.
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         Title = new GameState_Title(this);
         Matchmaking = new GameState_Matchmaking(this);
 

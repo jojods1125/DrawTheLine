@@ -31,7 +31,7 @@ public class NetworkManager : MonoBehaviour
         }
         else
         {
-           
+            GameFSM.Instance.DBG_Start();
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
         }

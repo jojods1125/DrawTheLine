@@ -21,5 +21,6 @@ public class RoomItem : MonoBehaviour
     public void OnClickItem()
     {
         manager.JoinRoom(roomName.text);
+        GameFSM.Instance.DBG_ToCLobby();
     }
 }

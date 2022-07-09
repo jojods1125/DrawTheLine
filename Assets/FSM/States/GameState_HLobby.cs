@@ -32,5 +32,10 @@ public class GameState_HLobby : GameState
                 stateMachine.ChangeState(_gameFSM.H_Prompt);
             }
         }
+        else if (_gameFSM.DBG_ExitVal)
+        {
+            _gameFSM.DBG_ExitVal = false;
+            stateMachine.ChangeState(_gameFSM.Matchmaking);
+        }
     }
 }

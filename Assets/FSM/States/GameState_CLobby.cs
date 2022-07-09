@@ -25,5 +25,10 @@ public class GameState_CLobby : GameState
             _gameFSM.DBG_StartVal = false;
             stateMachine.ChangeState(_gameFSM.C_Wait);
         }
+        else if (_gameFSM.DBG_ExitVal)
+        {
+            _gameFSM.DBG_ExitVal = false;
+            stateMachine.ChangeState(_gameFSM.Matchmaking);
+        }
     }
 }
