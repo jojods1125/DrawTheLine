@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class PlayerLegacy : MonoBehaviour
 {
-    public string name;
+    public string playerName;
     //public Image icon;
     public SpriteRenderer sprite;
 

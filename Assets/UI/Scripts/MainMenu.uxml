@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Scripts/UIStyleSheet.uss?fileID=7433441132597879392&amp;guid=9999bcdf93553924ca776453cd945c97&amp;type=3#UIStyleSheet" />
+    <ui:VisualElement name="Background" class="BackgroundStyle" style="align-items: center; flex-direction: row;">
+        <ui:VisualElement name="LeftBlackMarks" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/UI/Assets/Left%20Black%20Side%20Marks.png?fileID=21300000&amp;guid=3d3568a7462350243a834ebbd4517c0a&amp;type=3#Left Black Side Marks&apos;); width: 3%; height: 75%; -unity-background-scale-mode: scale-and-crop; position: absolute; left: 0; align-items: flex-start;" />
+        <ui:VisualElement name="RightBlackMarks" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/UI/Assets/Right%20Black%20Side%20Marks.png?fileID=21300000&amp;guid=76643c4f445aa1e43a04da16aecdb992&amp;type=3#Right Black Side Marks&apos;); width: 3%; height: 10%; -unity-background-scale-mode: scale-and-crop; position: absolute; left: auto; align-items: flex-start; -unity-text-align: upper-left; right: 0; top: 25%;" />
+        <ui:VisualElement name="ContentWindow" class="TestContentWindowStyle ContentWindow" style="border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; background-color: rgb(255, 255, 255); flex-direction: column-reverse;">
+            <ui:VisualElement name="ContentHeader" class="ContentHeader">
+                <ui:Label text="DRAW THE LINE" display-tooltip-when-elided="true" name="Title" style="color: rgb(255, 255, 255); font-size: 18px; justify-content: flex-start; align-items: auto; position: absolute; top: 2%;" />
+            </ui:VisualElement>
+            <ui:Button text="Proctor An Exam" display-tooltip-when-elided="true" name="PressMe" class="TestButtonStyle ButtonStyle" style="font-size: 12px; color: rgb(244, 202, 108);" />
+            <ui:Button text="Take The Exam" display-tooltip-when-elided="true" name="StartLobbyButton" class="ButtonStyle" style="font-size: 12px; color: rgb(244, 202, 108);" />
+            <ui:Label text="Wow you really pressed it" display-tooltip-when-elided="true" name="Message" style="white-space: normal; display: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="PaperTextureFg" picking-mode="Ignore" class="PaperTextureFg" />
+</ui:UXML>

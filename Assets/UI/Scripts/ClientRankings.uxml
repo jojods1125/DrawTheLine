@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Scripts/UIStyleSheet.uss?fileID=7433441132597879392&amp;guid=9999bcdf93553924ca776453cd945c97&amp;type=3#UIStyleSheet" />
+    <ui:VisualElement name="Background" class="BackgroundStyle">
+        <ui:VisualElement name="LeftBlackMarks" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/UI/Assets/Left%20Black%20Side%20Marks.png?fileID=21300000&amp;guid=3d3568a7462350243a834ebbd4517c0a&amp;type=3#Left Black Side Marks&apos;); width: 3%; height: 75%; -unity-background-scale-mode: scale-and-crop; position: absolute; left: 0; align-items: flex-start;" />
+        <ui:VisualElement name="RightBlackMarks" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/UI/Assets/Right%20Black%20Side%20Marks.png?fileID=21300000&amp;guid=76643c4f445aa1e43a04da16aecdb992&amp;type=3#Right Black Side Marks&apos;); width: 3%; height: 10%; -unity-background-scale-mode: scale-and-crop; position: absolute; left: auto; align-items: flex-start; -unity-text-align: upper-left; right: 0; top: 25%;" />
+        <ui:VisualElement name="PageHeaderContainer" style="flex-direction: row; align-items: flex-end; flex-grow: 1; width: 100%; height: 20%; margin-left: 12%; margin-top: 12px; justify-content: flex-start;">
+            <ui:VisualElement name="PromptBackground" class="ContentWindow" style="width: 70%; height: 100%; justify-content: center; -unity-text-align: upper-center; flex-direction: column; padding-top: 0;">
+                <ui:Label text="TOPPINGS THAT really really really really really really really really really really really really realy really really reallyBELONG ON PIZZA" display-tooltip-when-elided="true" name="PromptText" class="PromptHeaderText" style="align-items: center; justify-content: center; -unity-text-align: middle-center; position: relative; bottom: auto; flex-direction: column; white-space: normal; width: 90%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:Label text="Section A" display-tooltip-when-elided="true" name="StageLabel" style="font-size: 10px; -unity-font-style: bold-and-italic; color: rgb(244, 202, 108);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="PlayerInputContainer" style="flex-grow: 1; flex-direction: row; height: 100%; align-items: flex-start; justify-content: center; width: 100%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
+            <ui:VisualElement name="ResponsesWindow" class="TestContentWindowStyle ContentWindow ListWindow">
+                <ui:VisualElement name="ResponsesHeader" class="ContentHeader">
+                    <ui:Label text="YOUR RESPONSES" display-tooltip-when-elided="true" name="ResponsesTitle" class="HeaderText" style="font-size: 11px;" />
+                </ui:VisualElement>
+                <ui:ListView focusable="true" name="ResponsesListView" virtualization-method="DynamicHeight" horizontal-scrolling="false" style="width: 100%; height: 100%; margin-top: 0; padding-top: 20px; padding-bottom: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="YourRankingWindow" class="TestContentWindowStyle ContentWindow ListWindow">
+                <ui:VisualElement name="RankingHeader" class="ContentHeader">
+                    <ui:Label text="YOUR RANKING" display-tooltip-when-elided="true" name="RankingTitle" enable-rich-text="true" class="HeaderText" />
+                </ui:VisualElement>
+                <ui:Label text="Agree" display-tooltip-when-elided="true" name="Agree" class="BoundaryLabel" style="top: 35px; position: absolute;" />
+                <ui:Label text="Disagree" display-tooltip-when-elided="true" name="Disagree" class="BoundaryLabel" style="justify-content: flex-start; -unity-text-align: lower-center; top: auto; bottom: 0; position: absolute;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="PaperTextureFg" picking-mode="Ignore" class="PaperTextureFg" />
+</ui:UXML>
