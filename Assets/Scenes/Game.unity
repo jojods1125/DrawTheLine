@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2592362342642576713, guid: a569b42d3f77eda48926931bb6154b5c, type: 3}
-  minX: -10
-  maxX: 10
+  minX: -2.3
+  maxX: 2.3
   minY: -4
   maxY: 4
 --- !u!4 &1441232711
