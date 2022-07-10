@@ -35,7 +35,6 @@ public class DrawLineListItemController
         mResponseLabel.text = response.Response;
         mNumberLabel.text = response.Ranking.ToString();
         Debug.Log("Drawing line " + response.LineDrawnAfter);
-        mLineLabel.text = response.LineDrawnAfter ?
-            "------------------------------------------------------" : "";
+        mLineLabel.style.backgroundColor = response.LineDrawnAfter? Color.gray : Color.white;
     }
 }
