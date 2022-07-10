@@ -65,11 +65,12 @@ public class DrawLineListController
         
         if (!selectedResponse.LineDrawnAfter)
         {
-            selectedResponse.LineDrawnAfter = true;
-            for(int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
+            for (int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
             {
                 gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
             }
+            selectedResponse.LineDrawnAfter = true;
+
         }
         Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
         m_ResponseList.Rebuild();
