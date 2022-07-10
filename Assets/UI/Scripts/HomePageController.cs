@@ -23,8 +23,7 @@ public class HomePageController : MonoBehaviour
     void Submit()
     {
         //TODO: set player name here using m_NameInput.value
-        NextPage.SetActive(true);
-        gameObject.SetActive(false);
+        GameManager.Instance.ConnectToServer.OnClickConnect(m_NameInput.value);
     }
 
 }

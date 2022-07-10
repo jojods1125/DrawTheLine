@@ -32,7 +32,7 @@ public class GameState_HLobby : GameState
             _gameFSM.DBG_StartVal = false;
             if (!_gameFSM.HavePlayed)
             {
-                stateMachine.ChangeState(_gameFSM.H_Intro);
+                stateMachine.ChangeState(_gameFSM.H_Prompt);
             }
             else
             {

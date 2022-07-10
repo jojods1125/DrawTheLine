@@ -14,13 +14,12 @@ public class GameState_CLobby : GameState
     public override void Enter()
     {
         base.Enter();
-        UIManager.Instance.SetLobby(true);
+        UIManager.Instance.SetClientWait(true);
     }
 
     public override void Exit()
     {
         base.Exit();
-        UIManager.Instance.SetLobby(false);
     }
 
     public override void UpdateLogic()

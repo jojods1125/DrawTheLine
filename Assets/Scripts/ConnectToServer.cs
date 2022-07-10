@@ -7,20 +7,11 @@ using TMPro;
 
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
-    [Header("UI Settings")]
-    public TMP_InputField usernameInput;
-    public TMP_Text buttonText;
-
-    public void OnClickConnect()
+    public void OnClickConnect(string nameUser)
     {
-        if (usernameInput.text.Length >= 1) // Probably have a max Length and filters
-        {
-            PhotonNetwork.NickName = usernameInput.text;
-            buttonText.text = "Connecting...";
-            PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.ConnectUsingSettings();
-        }
-        // else, show warning text and play a sound
+        PhotonNetwork.NickName = nameUser;
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()

@@ -11,8 +11,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [Header("UI Settings")]
     public TMP_InputField roomInputField;
     public GameObject lobbyArea;
-    public GameObject roomArea;
-    public TMP_Text roomName;
+
+    public LobbyController lobbyController;
 
     [Header("Room Settings")]
     public RoomItem roomItemPrefab;
@@ -22,9 +22,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [Header("Player Settings")]
     public List<PlayerItem> playerItemsList = new List<PlayerItem>();
     public PlayerItem playerItemPrefab;
-    public Transform playerItemParent;
-
-    public GameObject playButton;
 
     [Header("Networking Settings")]
     public int minimumPlayersRequired = 4; // 3 players and 1 screen
@@ -38,14 +35,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= minimumPlayersRequired)
-        {
-            playButton.SetActive(true);
-        }
-        else
-        {
-            playButton.SetActive(false);
-        }
+
     }
 
     public void OnClickCreate()
@@ -93,31 +83,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }
 
-    void UpdatePlayerList()
-    {
-        foreach (PlayerItem item in playerItemsList)
-        {
-            Destroy(item.gameObject);
-        }
-        playerItemsList.Clear();
-
-        if (PhotonNetwork.CurrentRoom == null)
-            return;
-
-        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
-        {
-            PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
-            newPlayerItem.SetPlayerInfo(player.Value);
-
-            if (player.Value == PhotonNetwork.LocalPlayer)
-            {
-                newPlayerItem.ApplyLocalChanges();
-            }
-
-            playerItemsList.Add(newPlayerItem);
-        }
-    }
-
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
@@ -126,25 +91,22 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         lobbyArea.SetActive(false);
-        roomArea.SetActive(true);
-        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
-        UpdatePlayerList();
     }
 
     public override void OnLeftRoom()
     {
-        roomArea.SetActive(false);
         lobbyArea.SetActive(true);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        UpdatePlayerList();
+        if (!newPlayer.IsMasterClient)
+            lobbyController.PlayerAdded(newPlayer.NickName);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        UpdatePlayerList();
+
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)

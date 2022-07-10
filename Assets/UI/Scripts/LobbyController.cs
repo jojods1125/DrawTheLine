@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class LobbyController : MonoBehaviour
+public class LobbyController : MonoBehaviourPunCallbacks
 {
 
     Dictionary<int, VisualElement> m_PlayerIcons = new Dictionary<int, VisualElement>();
@@ -15,6 +16,8 @@ public class LobbyController : MonoBehaviour
     Button m_CloseGame;
 
     GameManager gm = GameManager.Instance;
+
+    int playerIndex = 0;
 
     Color[] iconColors = {
         new Color32(206, 103, 103, 255),
@@ -41,8 +44,8 @@ public class LobbyController : MonoBehaviour
         m_RoomName = root.Q<Label>("RoomName");
         m_HostName = root.Q<Label>("HostName");
 
-        // m_RoomName.text = TODO: ADD HOST NAME FROM GM HERE
-        // m_HostName.text = TODO: ADD HOST NAME HERE
+        //m_RoomName.text = PhotonNetwork.CurrentRoom.Name;
+        //m_HostName.text = PhotonNetwork.MasterClient.NickName;
 
         m_StartGame = root.Q<Button>("Submit");
         m_CloseGame = root.Q<Button>("LeaveLobby");
@@ -52,28 +55,22 @@ public class LobbyController : MonoBehaviour
 
     }
 
-    public void PlayerAdded(int playerId, string playerName)
+    public void PlayerAdded(string playerName)
     {
-        if (playerId < 8) {
-            Debug.Log("Playerid: " + playerId + "playerName:" + playerName);
-            m_PlayerIcons[playerId].style.unityBackgroundImageTintColor = iconColors[playerId];
-            m_PlayerNameLabels[playerId].text = playerName;
+        if (playerIndex < 8) {
+            Debug.Log("Playerid: " + playerIndex + "playerName:" + playerName);
+            m_PlayerIcons[playerIndex].style.unityBackgroundImageTintColor = iconColors[playerIndex];
+            m_PlayerNameLabels[playerIndex].text = playerName;
+            playerIndex++;
         }
     }
 
     void StartButtonPressed()
     {
-        //Todo: delete this dummy data
+        Debug.Log("PRESSING BUTTON");
 
-        PlayerAdded(0, "Joseph");
-        PlayerAdded(1, "Joseph");
-        PlayerAdded(2, "Joseph");
-        PlayerAdded(3, "Joseph");
-        PlayerAdded(4, "Joseph");
-        PlayerAdded(5, "Joseph");
-        PlayerAdded(6, "Joseph");
-        PlayerAdded(7, "Joseph");
-       
+        PhotonNetwork.LoadLevel("Game");
+        GameFSM.Instance.DBG_Start(PhotonNetwork.CurrentRoom.PlayerCount - 1);
         //gameObject.SetActive(false);
     }
 
