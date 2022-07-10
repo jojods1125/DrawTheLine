@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -124,6 +125,10 @@ public class GameManager : MonoBehaviour
         NetworkManager.aggregateRankings.Clear();
         ResponseDatasUnranked.Clear();
         ResponseDatasRanked.Clear();
+        ResponsesRanked.Clear();
+        Array.Clear(RankedSpectrum, 0, RankedSpectrum.Length);
+        AverageResponseDatas.Clear();
+        Array.Clear(RankedSpectrumData, 0, RankedSpectrumData.Length);
     }
 
     public void CollectRanking(string[] ranking)
