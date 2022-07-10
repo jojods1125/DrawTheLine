@@ -52,7 +52,7 @@ public class DrawLineListController
         m_ResponseList.bindItem = (item, index) =>
         {
             var data = gm.RankedSpectrumData[index];
-            data.Ranking = index;
+            data.Ranking= index;
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
@@ -64,12 +64,12 @@ public class DrawLineListController
 
         var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
 
-        for (int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
+        for (int i = 0; i < gm.RankedSpectrumData.Length; i++)
         {
-            gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
+            gm.RankedSpectrumData[i].LineDrawnAfter = false;
         }
-       gm.ResponseDatasRanked[gm.NetworkManager.playerID][selectedResponse.Ranking].LineDrawnAfter = true;
-        Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
+       gm.RankedSpectrumData[selectedResponse.Ranking].LineDrawnAfter = true;
+        Debug.Log("Clicked: " + gm.RankedSpectrumData[selectedResponse.Ranking].LineDrawnAfter + " " + selectedResponse.LineDrawnAfter);
         m_ResponseList.Rebuild();
 
     }
