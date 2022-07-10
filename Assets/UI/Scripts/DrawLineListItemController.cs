@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-public class ResponseListItemController
+public class DrawLineListItemController
 {
 
     Label mResponseLabel;
     Label mNumberLabel;
+    Label mLineLabel;
     Color white = new Color(1f, 1f,1f);
     Color yellow = new Color(1f, 0.9490196f, 0.8235294f);
 
@@ -14,6 +15,7 @@ public class ResponseListItemController
     {
         mResponseLabel = visualElement.Q<Label>("ResponseLabel");
         mNumberLabel = visualElement.Q<Label>("Number");
+        mLineLabel = visualElement.Q<Label>("LineLabel");
     }
 
     public void SetData(ResponseItemDefinition response)
@@ -32,5 +34,8 @@ public class ResponseListItemController
         }
         mResponseLabel.text = response.Response;
         mNumberLabel.text = response.Ranking.ToString();
+        Debug.Log("Drawing line " + response.LineDrawnAfter);
+        mLineLabel.text = response.LineDrawnAfter ?
+            "------------------------------------------------------" : "";
     }
 }
