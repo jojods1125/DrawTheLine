@@ -17,6 +17,12 @@ public class GameState_HFinalScores : GameState
         GameManager.Instance.StartCinematic(2f, "Final Scores Cinematic");
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        GameManager.Instance.NetworkManager.SendFinalScoresToClients();
+    }
+
     public override void UpdateLogic()
     {
         base.UpdateLogic();

@@ -21,6 +21,7 @@ public class GameState_HSpectrum : GameState
     {
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
+        GameManager.Instance.NetworkManager.SendAverageRankingToClients(GameManager.Instance.CalculateAverageRanking()); ;
     }
 
     public override void UpdateLogic()

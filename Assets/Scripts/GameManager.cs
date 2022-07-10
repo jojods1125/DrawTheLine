@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     private IEnumerator _coroutine;
 
+    [HideInInspector]
+    public NetworkManager NetworkManager;
+
     public float TimerDuration = 3f;
 
     public static GameManager Instance { get; private set; }
@@ -51,5 +54,33 @@ public class GameManager : MonoBehaviour
             print("Timer Activated");
             GameFSM.Instance.DBG_TimerEnd();
         }
+    }
+
+    public string GeneratePrompt()
+    {
+        return "Prompt";
+    }
+
+    public string[] RetrieveResponses()
+    {
+        string[] responses = new string[NetworkManager.numberOfPlayers * 2];
+        for (int i = 0; i < responses.Length; i++)
+        {
+            responses[i] = "hi";
+        }
+        
+        return responses;
+    }
+
+    public string[] CalculateAverageRanking()
+    {
+        string[] averageRankings = new string[NetworkManager.numberOfPlayers * 2];
+        
+        for (int i = 0; i < averageRankings.Length; i++)
+        {
+            averageRankings[i] = "hi";
+        }
+        // Calculate here
+        return averageRankings;
     }
 }

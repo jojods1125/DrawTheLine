@@ -33,15 +33,15 @@ public class GameState_CWait : GameState
             switch (_gameFSM.previousState)
             {
                 case GameState_CLobby _:
-                    stateMachine.ChangeState(_gameFSM.C_Answers);
+                    stateMachine.ChangeState(_gameFSM.C_Answers); // Prompt ping
                     break;
 
                 case GameState_CAnswers _:
-                    stateMachine.ChangeState(_gameFSM.C_Ranking);
+                    stateMachine.ChangeState(_gameFSM.C_Ranking); // Ranking ping
                     break;
 
                 case GameState_CRanking _:
-                    stateMachine.ChangeState(_gameFSM.C_Line);
+                    stateMachine.ChangeState(_gameFSM.C_Line); // Line ping
                     break;
 
                 case GameState_CLine _:

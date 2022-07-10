@@ -9,20 +9,22 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Ref to GameManager???
 
     [Header("Game & Host")]
-    public int numberOfPlayers; // Taken from GameManager
+    public int numberOfPlayers = 2; // Taken from GameManager
     public SortedDictionary<int, int> scores; // Handled by Host - <playerID, score>
     public List<PlayerItem> playerItemsList = new List<PlayerItem>(); // Taken from GameManager
     // Current Prompt
     public string currentPrompt; // GameManager will randomly select a prompt (Not repeats)
     // Total Responses
-    public List<string> totalResponses; // Aggregated by clients and handled by Host
+    public SortedDictionary<int, string> totalResponses; // Aggregated by clients and handled by Host
+    // Anonymous Responses
+    public List<string> anonymousResponses;
     // Aggregate Rankings
     public SortedDictionary<int, List<string>> aggregateRankings;
     // Average Ranking
     public List<string> averageRanking; // Calculated externally
-    public List<(string, string)> averageRankingSplits; // Calculated externally
+    public List<string> averageRankingSplits; // Calculated externally
     // Aggregate Line Positons
-    public SortedDictionary<int, (string, string)> aggregateLinePos; // Aggregated by clients and handled by Host
+    public SortedDictionary<int, string> aggregateLinePos; // Aggregated by clients and handled by Host
 
     [Header("Client")]
     // Input Fields for Responses
@@ -54,6 +56,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        numberOfPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
+        GameManager.Instance.NetworkManager = this;
         view = GetComponent<PhotonView>();
         if (PhotonNetwork.IsMasterClient)
         {
@@ -111,6 +115,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         view.RPC("SendMessage", RpcTarget.Others, messageCounter);
     }
 
+    public void SendPromptToClients(string prompt)
+    {
+        view.RPC("ReceiveHostPrompt", RpcTarget.Others, prompt);
+    }
+
+    public void SendResponsesToClients(string[] responses)
+    {
+        view.RPC("ReceiveHostResponses", RpcTarget.Others, responses);
+    }
+
+    public void SendAverageRankingToClients(string[] averageRanking)
+    {
+        view.RPC("ReceiveHostAverageRanking", RpcTarget.Others, averageRanking);
+    }
+
+    public void SendFinalScoresToClients()
+    {
+        view.RPC("ReceiveHostFinalScores", RpcTarget.Others);
+    }
+
     #region Network Functions
     [PunRPC]
     //Host -> Clients
@@ -120,15 +144,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         currentPrompt = prompt;
         // Update Client UI
         // Host will wait for Client's responses
+        GameFSM.Instance.DBG_HostPing();
     }
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientResponses(string response1, string response2)
+    public void ReceiveClientResponses(string response1, string response2, int playerID)
     {
         // Host will receive the clients' responses and add them to the total responses (array or list)
-        totalResponses.Add(response1);
-        totalResponses.Add(response2);
+        totalResponses.Add(playerID, response1);
+        totalResponses.Add(playerID, response2);
     }
 
     [PunRPC]
@@ -137,8 +162,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         // Assume totalResponses from GameManager has converted to array
         // Clients receive the total responses (every clients' responses) from the Host
-        totalResponses = new List<string>(responses);
+        anonymousResponses = new List<string>(responses);
         // Update Client UI
+        GameFSM.Instance.DBG_HostPing();
     }
 
     [PunRPC]
@@ -152,19 +178,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host -> Clients
-    public void ReceiveHostAverageRanking((string, string)[] averageRanking)
+    public void ReceiveHostAverageRanking(string[] averageRanking)
     {
         // Clients receive the Host's average rankings and then decide
-        averageRankingSplits = new List<(string, string)>(averageRanking);
+        averageRankingSplits = new List<string>(averageRanking);
         // Update Client UI
+        GameFSM.Instance.DBG_HostPing();
     }
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientLine((string, string) rankingLine, int playerID)
+    public void ReceiveClientLine(string rankingLine, int playerID)
     {
         // Host will receive the Clients' Line position and display them
         aggregateLinePos.Add(playerID, rankingLine);
+    }
+
+    [PunRPC]
+    // Host -> Clients
+    public void ReceiveHostFinalScores()
+    {
+        GameFSM.Instance.DBG_HostPing();
     }
     #endregion
 }
