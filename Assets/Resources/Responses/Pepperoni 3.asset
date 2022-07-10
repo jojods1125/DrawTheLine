@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Pepperoni
+  m_Script: {fileID: 11500000, guid: 4055c8452109eeb479784edafde5e4c6, type: 3}
+  m_Name: Pepperoni 3
   m_EditorClassIdentifier: Assembly-CSharp::ResponseItemDefinition
-  CreatorPlayerId: 1
+  CreatorPlayerId: 0
+  CreatorNickname: Joseph
   Response: Pepperoni
-  Ranking: 1
+  Ranking: 0

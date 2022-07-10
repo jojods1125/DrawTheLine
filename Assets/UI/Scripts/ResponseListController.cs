@@ -21,9 +21,10 @@ public class ResponseListController
         m_ResponseList = root.Q<ListView>("ResponsesListView");
         m_SpectrumList = root.Q<ListView>("SpectrumListView");
 
-        FillCharacterList();
+        FillResponseLists();
 
         m_ResponseList.onSelectionChange += OnResponseSelected;
+        m_SpectrumList.onSelectionChange += OnSpectrumSelected;
     }
 
     void EnumerateAllResponses()
@@ -31,9 +32,12 @@ public class ResponseListController
         m_ResponseItems = new List<ResponseItemDefinition>();
         m_ResponseItems.AddRange(Resources.LoadAll<ResponseItemDefinition>("Responses"));
         Debug.Log("Length of response list: " + m_ResponseItems.Count);
+
+        m_SpectrumItems = new List<ResponseItemDefinition>();
+
     }
 
-    void FillCharacterList()
+    void FillResponseLists()
     {
         // Set up a make item function for a list entry
         m_ResponseList.makeItem = () =>
@@ -55,12 +59,15 @@ public class ResponseListController
         };
 
         // Set up bind function for a specific list entry
-        m_SpectrumList.bindItem = (item, index) =>
+        m_ResponseList.bindItem = (item, index) =>
         {
-            (item.userData as ResponseListItemController).SetData(m_SpectrumItems[index]);
+            m_ResponseItems[index].Ranking = index;
+            (item.userData as ResponseListItemController).SetData(m_ResponseItems[index]);
         };
 
-        m_SpectrumList.itemsSource = m_SpectrumItems;
+        m_ResponseList.itemsSource = m_ResponseItems;
+
+        /////////////////////////// spectrum /////////////////////
 
         // Set up a make item function for a list entry
         m_SpectrumList.makeItem = () =>
@@ -75,6 +82,7 @@ public class ResponseListController
             newListEntry.userData = newListEntryLogic;
 
             // Initialize the controller script
+
             newListEntryLogic.SetVisualElement(newListEntry);
 
             // Return the root of the instantiated visual tree
@@ -84,6 +92,7 @@ public class ResponseListController
         // Set up bind function for a specific list entry
         m_SpectrumList.bindItem = (item, index) =>
         {
+            m_SpectrumItems[index].Ranking = index;
             (item.userData as ResponseListItemController).SetData(m_SpectrumItems[index]);
         };
 
@@ -93,7 +102,7 @@ public class ResponseListController
     void OnResponseSelected(IEnumerable<object> selectedItems)
     {
         var selectedResponse = m_ResponseList.selectedItem as ResponseItemDefinition;
-        if(selectedResponse == null)
+        if (selectedResponse == null)
         {
             //Probably nothing
 
@@ -101,7 +110,35 @@ public class ResponseListController
         else
         {
             // Move to Spectrum
+            Debug.Log("Move to spectrum: " + selectedResponse + m_ResponseItems.ToString());
+            m_SpectrumItems.Add(selectedResponse);
+            m_ResponseItems.Remove(selectedResponse);
+            FillResponseLists();
         }
+    }
+
+    void OnSpectrumSelected(IEnumerable<object> selectedItems)
+    {
+        var selectedResponse = m_SpectrumList.selectedItem as ResponseItemDefinition;
+        if (selectedResponse == null)
+        {
+            //Probably nothing
+
+        }
+        else
+        {
+            // Move to Spectrum
+            Debug.Log("Remove from spectrum");
+            m_ResponseItems.Add(selectedResponse);
+            m_SpectrumItems.Remove(selectedResponse);
+            FillResponseLists();
+
+        }
+    }
+
+    void AddToSpectrum(ResponseItemDefinition response)
+    {
+
     }
 
 
