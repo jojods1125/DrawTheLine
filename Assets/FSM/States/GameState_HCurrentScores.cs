@@ -17,6 +17,12 @@ public class GameState_HCurrentScores : GameState
         GameManager.Instance.StartCinematic(2f, "Current Scores Cinematic");
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        GameManager.Instance.ClearRoundData();
+    }
+
     public override void UpdateLogic()
     {
         base.UpdateLogic();

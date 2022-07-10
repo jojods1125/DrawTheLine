@@ -580,7 +580,7 @@ MonoBehaviour:
   HavePlayed: 0
   CurrentRound: 0
   RoundMax: 3
-  NumPlayers: 4
+  NumPlayers: 2
   DBG_ToMatchVal: 0
   DBG_ToHLobbyVal: 0
   DBG_ToCLobbyVal: 0

@@ -65,7 +65,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             player = PhotonNetwork.LocalPlayer;
             playerID = player.ActorNumber;
             GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
-            GameFSM.Instance.DBG_Start();
+            GameFSM.Instance.DBG_Start(8);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
         }
