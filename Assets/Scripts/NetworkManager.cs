@@ -64,7 +64,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             playerID = player.ActorNumber;
             //GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
             GameManager.Instance.isHost = false;
-            GameFSM.Instance.DBG_Start(8);
+            GameFSM.Instance.DBG_Start((numberOfPlayers - 1) * 2);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
             Debug.Log(playerID);
@@ -91,7 +91,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void OnClickSubmitRankings()
     {
         // Dummy Info
-        string[] rankings = new string[GameFSM.Instance.NumPlayers * 2];
+        string[] rankings = new string[(numberOfPlayers - 1) * 2];
         ResponseData[] hold = GameManager.Instance.ResponseDatasRanked[playerID];
         int index = 0;
 
