@@ -23,6 +23,7 @@ public class GameState_CAnswers : GameState
     {
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
+        GameManager.Instance.CancelTimer();
         UIManager.Instance.SetClientAnswers(false);
     }
 

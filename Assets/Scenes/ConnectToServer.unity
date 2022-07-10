@@ -620,7 +620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkManager: {fileID: 0}
-  TimerDuration: 30
+  RankedSpectrum: []
+  isHost: 0
+  TimerDuration: 300
 --- !u!1 &1634764961
 GameObject:
   m_ObjectHideFlags: 0
