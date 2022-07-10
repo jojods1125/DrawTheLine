@@ -6,10 +6,7 @@ public class SurveySaysListItemController
 {
 
     Label mResponseLabel;
-    Label mNumberLabel;
-    Color white = new Color(1f, 1f,1f);
-    Color yellow = new Color(1f, 0.9490196f, 0.8235294f);
-
+    VisualElement m_Line;
     public void SetVisualElement(VisualElement visualElement)
     {
         mResponseLabel = visualElement.Q<Label>("ResponseLabel");
@@ -18,5 +15,11 @@ public class SurveySaysListItemController
     public void SetData(ResponseData response)
     {
         mResponseLabel.text = response.Response;
+
+        if (response.LineDrawnAfter)
+        {
+            m_Line.style.backgroundColor = new Color(1.0f, 0f, 0f);
+        }
+
     }
 }

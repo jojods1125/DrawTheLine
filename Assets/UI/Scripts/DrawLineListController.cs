@@ -51,27 +51,25 @@ public class DrawLineListController
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            var data = gm.ResponseDatasRanked[gm.NetworkManager.playerID][index];
+            var data = gm.RankedSpectrumData[index];
+            data.Ranking= index;
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = gm.ResponseDatasRanked[gm.NetworkManager.playerID];
+        m_ResponseList.itemsSource = gm.RankedSpectrumData;
     }
 
     void OnResponseSelected(IEnumerable<object> selectedItems)
     {
-        
+
         var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
-        
-        if (!selectedResponse.LineDrawnAfter)
+
+        for (int i = 0; i < gm.RankedSpectrumData.Length; i++)
         {
-            selectedResponse.LineDrawnAfter = true;
-            for(int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
-            {
-                gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
-            }
+            gm.RankedSpectrumData[i].LineDrawnAfter = false;
         }
-        Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
+       gm.RankedSpectrumData[m_ResponseList.selectedIndex].LineDrawnAfter = true;
+        Debug.Log("Clicked: " + gm.RankedSpectrumData[m_ResponseList.selectedIndex].LineDrawnAfter + " " + m_ResponseList.selectedIndex);
         m_ResponseList.Rebuild();
 
     }
