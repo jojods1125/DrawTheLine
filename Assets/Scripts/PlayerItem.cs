@@ -27,13 +27,14 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     {
         //backgroundImage = GetComponent<Image>();
 
-
+        
     }
 
     public void SetPlayerInfo(Player _player)
     {
         playerName.text = _player.NickName;
         player = _player;
+        // Set Player ID
         UpdatePlayerItem(player);
     }
 

@@ -66,6 +66,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickPlayButton()
     {
+        // Send PlayerItem List to GameManager
         PhotonNetwork.LoadLevel("Game");
 
         GameFSM.Instance.DBG_Start();
