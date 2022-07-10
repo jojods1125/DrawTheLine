@@ -22,6 +22,7 @@ public class GameState_CRanking : GameState
     {
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
+        GameManager.Instance.CancelTimer();
         UIManager.Instance.SetClientRanking(false);
     }
 

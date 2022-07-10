@@ -17,6 +17,12 @@ public class GameState_HWait : GameState
         GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        GameManager.Instance.CancelTimer();
+    }
+
     public override void UpdateLogic()
     {
         base.UpdateLogic();

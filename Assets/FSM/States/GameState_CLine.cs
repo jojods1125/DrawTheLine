@@ -23,6 +23,7 @@ public class GameState_CLine : GameState
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
         GameManager.Instance.ClearRoundData();
+        GameManager.Instance.CancelTimer();
         UIManager.Instance.SetClientLine(false);
     }
 

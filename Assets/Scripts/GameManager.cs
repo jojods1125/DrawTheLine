@@ -52,19 +52,20 @@ public class GameManager : MonoBehaviour
 
     public void StartTimer(float waitTime)
     {
-        GameState state = GameFSM.Instance.currentState;
-        _coroutine = TimerDelay(waitTime, state);
+        _coroutine = TimerDelay(waitTime);
         StartCoroutine(_coroutine);
     }
 
-    private IEnumerator TimerDelay(float waitTime, GameState triggeringState)
+    public void CancelTimer()
+    {
+        StopCoroutine(_coroutine);
+    }
+
+    private IEnumerator TimerDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        if (GameFSM.Instance.currentState == triggeringState)
-        {
-            print("Timer Activated");
-            GameFSM.Instance.DBG_TimerEnd();
-        }
+        print("Timer Activated");
+        GameFSM.Instance.DBG_TimerEnd();
     }
 
     public string GeneratePrompt()
