@@ -46,20 +46,14 @@ public class DrawLineListController
             return newListEntry;
         };
 
-        List<ResponseData[]> tempList = new();
-        foreach (ResponseData[] dataArray in gm.ResponseDatasRanked.Values)
-        {
-            tempList.Add(dataArray);
-        }
-
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            var data = tempList[gm.NetworkManager.playerID][index];
+            var data = gm.ResponseDatasRanked[gm.NetworkManager.playerID][index];
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = tempList;
+        m_ResponseList.itemsSource = gm.ResponseDatasRanked[gm.NetworkManager.playerID];
     }
 
     void OnResponseSelected(IEnumerable<object> selectedItems)

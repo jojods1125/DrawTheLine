@@ -101,7 +101,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             index++;
         }
 
-        view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings, playerID);
+        view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings);
         GameFSM.Instance.DBG_ClientSubmit();
     }
 
@@ -193,7 +193,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientsRankings(string[] rankingResponse, int playerID)
+    public void ReceiveClientsRankings(string[] rankingResponse)
     {
         // Host will receive the clients' rankings, store them, and average the rankings
         List<string> playerResponse = new List<string>(rankingResponse);
