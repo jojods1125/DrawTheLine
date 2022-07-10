@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
                 ResponsesRanked.Add(response, index);
             }
 
-            Debug.Log("COLLECT RANKING: " + response + " " + index);
+            Debug.Log("COLLECT RANKING: " + response + " " + ResponsesRanked[response]);
 
             index++;
         }
@@ -148,8 +148,7 @@ public class GameManager : MonoBehaviour
 
     public void CreateRankedSpectrum()
     {
-        ResponsesRanked.OrderBy(x => x.Value).Select(x => x.Key);
-        RankedSpectrum = ResponsesRanked.Keys.ToArray();
+        RankedSpectrum = ResponsesRanked.OrderBy(x => x.Value).Select(x => x.Key).ToArray();
 
         CreateRankedSpectrumData();
     }
