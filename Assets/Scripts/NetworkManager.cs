@@ -64,7 +64,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             playerID = player.ActorNumber;
             //GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
             GameManager.Instance.isHost = false;
-            GameFSM.Instance.DBG_Start((numberOfPlayers - 1) * 2);
+            GameFSM.Instance.DBG_Start(numberOfPlayers - 1);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
             Debug.Log(playerID);
