@@ -20,8 +20,7 @@ public class sndManager : MonoBehaviour
 
     private AudioSource[] sndSourceCh = new AudioSource[4];
 
-    // Start is called before the first frame update
-    void Start()
+    private void InitSources()
     {
         sndSourceCh[0] = GetComponents<AudioSource>()[0]; //channel 0 is for music
         sndSourceCh[1] = GetComponents<AudioSource>()[1]; //channel 1 is for voiceover
@@ -118,15 +117,15 @@ public class sndManager : MonoBehaviour
 
     void PlaySoundSource(AudioClip clip, int channel, bool overwrite)
     {
+        //initialize sound sources when first calling them
+        if(sndSourceCh[channel] == null)
+            InitSources();
+
         if (!overwrite)
         {
-            if(sndSourceCh[channel].clip != null)
-            {
-                //dont play sound if it is already playing
-                if (sndSourceCh[channel].clip == clip)
-                    return;
-            }
-
+            //dont play sound if it is already playing
+            if (sndSourceCh[channel].clip == clip)
+                return;
         }
 
         sndSourceCh[channel].Stop();
