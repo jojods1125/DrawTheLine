@@ -9,6 +9,7 @@ public class SurveySaysListController
     VisualTreeAsset m_ListEntryTemplate;
 
     ListView m_ResponseList;
+    VisualElement m_Line;
     GameManager gm;
 
     public void InitializeResponseList(VisualElement root, VisualTreeAsset listElementTemplate)
@@ -17,6 +18,7 @@ public class SurveySaysListController
         m_ListEntryTemplate = listElementTemplate;
 
         m_ResponseList = root.Q<ListView>("ResultsList");
+        m_Line = root.Q<VisualElement>("Line");
 
         FillResponseLists();
     }
@@ -45,14 +47,11 @@ public class SurveySaysListController
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            Debug.Log("index: " + index);
-            //Debug.Log("index: " +  index + " " + gm.AverageResponseDatas[0] + " " + gm.AverageResponseDatas[1].ToString() + " " + gm.AverageResponseDatas[2].ToString());
-            //var data = gm.AverageResponseDatas[index];
-            //data.Ranking = index;
-            //(item.userData as SurveySaysListItemController).SetData(data);
+            var data = gm.AverageResponseDatas[index];
+            data.Ranking = index;
+            (item.userData as SurveySaysListItemController).SetData(data);
         };
 
         m_ResponseList.itemsSource = gm.AverageResponseDatas;
     }
-
 }
