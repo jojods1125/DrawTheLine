@@ -81,12 +81,29 @@ public class GameManager : MonoBehaviour
     public string[] RetrieveResponses()
     {
         string[] responses = new string[NetworkManager.numberOfPlayers * 2];
-        for (int i = 0; i < responses.Length; i++)
+        int index = 0;
+
+        foreach (ResponseData data in ResponseDatasUnranked)
         {
-            responses[i] = "hi";
+            responses[index] = data.Response;
+            index++;
         }
         
         return responses;
+    }
+
+    public int[] RetrieveResponseIds()
+    {
+        int[] ids = new int[NetworkManager.numberOfPlayers * 2];
+        int index = 0;
+
+        foreach (ResponseData data in ResponseDatasUnranked)
+        {
+            ids[index] = data.CreatorPlayerId;
+            index++;
+        }
+
+        return ids;
     }
 
     public string[] CalculateAverageRanking()

@@ -109,9 +109,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         view.RPC("ReceiveHostPrompt", RpcTarget.Others, prompt);
     }
 
-    public void SendResponsesToClients(string[] responses)
+    public void SendResponsesToClients(string[] responses, int[] ids)
     {
-        view.RPC("ReceiveHostResponses", RpcTarget.Others, responses);
+        view.RPC("ReceiveHostResponses", RpcTarget.Others, responses, ids);
     }
 
     public void SendAverageRankingToClients(string[] averageRanking)
@@ -167,11 +167,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host -> Clients
-    public void ReceiveHostResponses(string[] responses)
+    public void ReceiveHostResponses(string[] responses, int[] ids)
     {
         // Assume totalResponses from GameManager has converted to array
         // Clients receive the total responses (every clients' responses) from the Host
         anonymousResponses = new List<string>(responses);
+        
+        for (int i = 0; i < responses.Length; i++)
+        {
+            GameManager.Instance.CreateResponseData(responses[i], ids[i]);
+        }
+
         // Update Client UI
         GameFSM.Instance.DBG_HostPing();
     }
