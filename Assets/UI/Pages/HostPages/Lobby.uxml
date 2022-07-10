@@ -1,0 +1,43 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Assets/HostStyles.uss?fileID=7433441132597879392&amp;guid=460ba2173459efc42bca6c8e1d6eab5f&amp;type=3#HostStyles" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Assets/HostBackground.png?fileID=2800000&amp;guid=861dedcad96027443af139567cf796a7&amp;type=3#HostBackground&apos;); -unity-background-scale-mode: scale-and-crop; align-items: center; justify-content: center;">
+        <ui:VisualElement name="LeaveContainer" style="width: 100%;">
+            <ui:Button text="Close Game" display-tooltip-when-elided="true" name="LeaveLobby" class="ButtonStyle" style="width: 200px;" />
+        </ui:VisualElement>
+        <ui:Label text="JOIN THE GAME" display-tooltip-when-elided="true" class="TitlePageText" />
+        <ui:VisualElement name="IconContainer" style="flex-direction: row; width: 100%; -unity-text-align: upper-left; justify-content: center;">
+            <ui:VisualElement name="Player1Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="Jennifer" display-tooltip-when-elided="true" name="Player1" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 25px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player2Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player2" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player3Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player3" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player5Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player5" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player6Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player6" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player7Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player7" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player8Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label text="A" display-tooltip-when-elided="true" name="Player8" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button text="Start" display-tooltip-when-elided="true" name="Submit" class="ButtonStyle" />
+        <ui:VisualElement name="InfoContainer" style="width: 100%; flex-direction: row;">
+            <ui:VisualElement name="RoomNameContainer" style="margin-left: 45px;">
+                <ui:Label text="Room Name:" display-tooltip-when-elided="true" name="Label" class="TitlePageText" style="font-size: 15px;" />
+                <ui:Label text="Cult Of Joseph" display-tooltip-when-elided="true" name="RoomName" class="TitlePageText" style="font-size: 35px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="HostNameContainer" style="right: 0; flex-direction: column; position: absolute;">
+                <ui:Label text="Host Name:" display-tooltip-when-elided="true" name="Label" class="TitlePageText" style="font-size: 15px; white-space: normal;" />
+                <ui:Label text="Joseph" display-tooltip-when-elided="true" name="HostName" class="TitlePageText" style="font-size: 35px; margin-right: 35px; margin-left: 0; margin-top: 0; margin-bottom: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
