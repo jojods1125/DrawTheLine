@@ -79,8 +79,7 @@ public class DrawLineListController
             }
         }
         Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
-        FillResponseLists();
-
+        m_ResponseList.Rebuild();
 
     }
 
