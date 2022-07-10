@@ -11,8 +11,12 @@ public class ResponseListController
     ListView m_ResponseList;
     ListView m_SpectrumList;
 
+    private GameManager gm;
+
     public void InitializeResponseList(VisualElement root, VisualTreeAsset listElementTemplate)
     {
+        gm = GameManager.Instance;
+
         EnumerateAllResponses();
 
         m_ListEntryTemplate = listElementTemplate;
@@ -58,12 +62,12 @@ public class ResponseListController
         m_ResponseList.bindItem = (item, index) =>
         {
 
-            var data = GameManager.Instance.ResponseDatasUnranked[index];
+            var data = gm.ResponseDatasUnranked[index];
             data.Ranking = index;
             (item.userData as ResponseListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = GameManager.Instance.ResponseDatasUnranked;
+        m_ResponseList.itemsSource = gm.ResponseDatasUnranked;
 
         /////////////////////////// spectrum /////////////////////
 
@@ -103,8 +107,9 @@ public class ResponseListController
         var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
         // Move to Spectrum
         m_SpectrumItems.Add(selectedResponse);
-        GameManager.Instance.ResponseDatasUnranked.Remove(selectedResponse);
-        GameManager.Instance.ResponseDatasRanked[0 /*TODO CHANGE TO PLAYER ID*/] = m_SpectrumItems.ToArray();
+        gm.ResponseDatasUnranked.Remove(selectedResponse);
+        Debug.Log("My Playerid" + gm.NetworkManager.playerID);
+        gm.ResponseDatasRanked[gm.NetworkManager.playerID] = m_SpectrumItems.ToArray();
         FillResponseLists();
     }
 
@@ -113,9 +118,9 @@ public class ResponseListController
         var selectedResponse = (ResponseData)m_SpectrumList.selectedItem;
 
         // Move to Spectrum
-        GameManager.Instance.ResponseDatasUnranked.Add(selectedResponse);
+        gm.ResponseDatasUnranked.Add(selectedResponse);
         m_SpectrumItems.Remove(selectedResponse);
-        GameManager.Instance.ResponseDatasRanked[0 /*TODO CHANGE TO PLAYER ID*/] = m_SpectrumItems.ToArray();
+        gm.ResponseDatasRanked[gm.NetworkManager.playerID] = m_SpectrumItems.ToArray();
         FillResponseLists();
     }
 }
