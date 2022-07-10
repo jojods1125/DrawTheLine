@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
     public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
     public string[] RankedSpectrum;
+    public List<ResponseData> AverageResponseDatas = new List<ResponseData>();
 
     public Dictionary<int, string> PlayerNames = new();
 

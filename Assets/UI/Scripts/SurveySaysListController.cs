@@ -3,28 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DrawLineListController
+public class SurveySaysListController
 {
 
     VisualTreeAsset m_ListEntryTemplate;
 
     ListView m_ResponseList;
-
-    private GameManager gm;
+    GameManager gm;
 
     public void InitializeResponseList(VisualElement root, VisualTreeAsset listElementTemplate)
     {
         gm = GameManager.Instance;
-
         m_ListEntryTemplate = listElementTemplate;
 
-        m_ResponseList = root.Q<ListView>("LineList");
-
-        Debug.Log("m_ResponseList: " + m_ResponseList.ToString());
+        m_ResponseList = root.Q<ListView>("ResultsList");
 
         FillResponseLists();
-
-        m_ResponseList.onSelectionChange += OnResponseSelected;
     }
 
     void FillResponseLists()
@@ -36,7 +30,7 @@ public class DrawLineListController
             var newListEntry = m_ListEntryTemplate.Instantiate();
 
             // Instantiate a controller for the data
-            var newListEntryLogic = new DrawLineListItemController();
+            var newListEntryLogic = new SurveySaysListItemController();
 
             // Assign the controller script to the visual element
             newListEntry.userData = newListEntryLogic;
@@ -51,29 +45,14 @@ public class DrawLineListController
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            var data = gm.ResponseDatasRanked[gm.NetworkManager.playerID][index];
-            (item.userData as DrawLineListItemController).SetData(data);
+            Debug.Log("index: " + index);
+            //Debug.Log("index: " +  index + " " + gm.AverageResponseDatas[0] + " " + gm.AverageResponseDatas[1].ToString() + " " + gm.AverageResponseDatas[2].ToString());
+            //var data = gm.AverageResponseDatas[index];
+            //data.Ranking = index;
+            //(item.userData as SurveySaysListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = gm.ResponseDatasRanked[gm.NetworkManager.playerID];
-    }
-
-    void OnResponseSelected(IEnumerable<object> selectedItems)
-    {
-        
-        var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
-        
-        if (!selectedResponse.LineDrawnAfter)
-        {
-            selectedResponse.LineDrawnAfter = true;
-            for(int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
-            {
-                gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
-            }
-        }
-        Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
-        m_ResponseList.Rebuild();
-
+        m_ResponseList.itemsSource = gm.AverageResponseDatas;
     }
 
 }
