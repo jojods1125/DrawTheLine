@@ -133,11 +133,4 @@ public class ResponseListController
 
         }
     }
-
-    void AddToSpectrum(ResponseItemDefinition response)
-    {
-
-    }
-
-
 }

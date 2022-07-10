@@ -8,4 +8,5 @@ public class ResponseItemDefinition : ScriptableObject
     public string CreatorNickname;
     public string Response;
     public int Ranking;
+    public bool LineDrawnAfter;
 }
