@@ -199,10 +199,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         List<string> playerResponse = new List<string>(rankingResponse);
         aggregateRankings.Add(playerID, playerResponse);
 
-        foreach(string response in rankingResponse)
-        {
-            Debug.Log("RANK " + response);
-        }
+        GameManager.Instance.CollectRanking(rankingResponse);
 
         GameFSM.Instance.DBG_IncClientPings();
     }

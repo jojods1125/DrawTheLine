@@ -15,13 +15,14 @@ public class GameState_HSpectrum : GameState
     {
         base.Enter();
         GameManager.Instance.StartCinematic(2f, "Spectrum Cinematic");
+        GameManager.Instance.CreateRankedSpectrum();
     }
 
     public override void Exit()
     {
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
-        GameManager.Instance.NetworkManager.SendAverageRankingToClients(GameManager.Instance.CalculateAverageRanking()); ;
+        GameManager.Instance.NetworkManager.SendAverageRankingToClients(GameManager.Instance.RankedSpectrum);
     }
 
     public override void UpdateLogic()

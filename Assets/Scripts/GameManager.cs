@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
+    public Dictionary<string, float> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
+    public string[] RankedSpectrum;
 
     public Dictionary<int, string> PlayerNames = new();
 
@@ -96,18 +99,6 @@ public class GameManager : MonoBehaviour
         return ids;
     }
 
-    public string[] CalculateAverageRanking()
-    {
-        string[] averageRankings = new string[GameFSM.Instance.NumPlayers * 2];
-        
-        for (int i = 0; i < averageRankings.Length; i++)
-        {
-            averageRankings[i] = "hi";
-        }
-        // Calculate here
-        return averageRankings;
-    }
-
     public void CreateResponseData(string response, int creatorPlayerId)
     {
         ResponseData newData = new ResponseData { CreatorPlayerId = creatorPlayerId, CreatorNickname = LookUpPlayerName(creatorPlayerId), Response = response };
@@ -130,6 +121,21 @@ public class GameManager : MonoBehaviour
         NetworkManager.aggregateRankings.Clear();
         ResponseDatasUnranked.Clear();
         ResponseDatasRanked.Clear();
+    }
+
+    public void CollectRanking(string[] ranking)
+    {
+        int index = 0;
+        foreach (string response in ranking)
+        {
+            ResponsesRanked[response] += index;
+        }
+    }
+
+    public string[] CreateRankedSpectrum()
+    {
+        var sortedDict = from entry in ResponsesRanked orderby entry.Value ascending select entry;
+        return ((Dictionary<string, int>)sortedDict).Keys.ToArray();
     }
 
 }
