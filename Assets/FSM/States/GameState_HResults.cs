@@ -14,6 +14,7 @@ public class GameState_HResults : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Results Cinematic");
     }
 
     public override void UpdateLogic()

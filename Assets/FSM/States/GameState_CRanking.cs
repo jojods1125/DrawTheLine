@@ -14,6 +14,7 @@ public class GameState_CRanking : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
     }
 
     public override void Exit()
@@ -29,6 +30,11 @@ public class GameState_CRanking : GameState
         if (_gameFSM.DBG_ClientSubmitVal)
         {
             _gameFSM.DBG_ClientSubmitVal = false;
+            stateMachine.ChangeState(_gameFSM.C_Wait);
+        }
+        else if (_gameFSM.DBG_TimerEndVal)
+        {
+            _gameFSM.DBG_TimerEndVal = false;
             stateMachine.ChangeState(_gameFSM.C_Wait);
         }
     }

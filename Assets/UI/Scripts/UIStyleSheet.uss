@@ -168,7 +168,7 @@
     -unity-font-style: bold;
     font-size: 9px;
     -unity-text-align: upper-center;
-    color: rgb(244, 202, 108);
+    color: rgb(253, 230, 180);
 }
 
 .PlayerResponseElement {
@@ -180,4 +180,12 @@
     height: 100%;
     padding-bottom: 30px;
     padding-top: 20px;
+}
+
+.ResponseList {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
