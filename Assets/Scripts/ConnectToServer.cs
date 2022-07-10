@@ -26,6 +26,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         SceneManager.LoadScene("Lobby");
+        GameFSM.Instance.DBG_ToMatch();
     }
 
 }
