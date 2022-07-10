@@ -124,8 +124,9 @@ public class GameFSM : StateMachine
 
     [HideInInspector]
     public bool DBG_StartVal = false;
-    public void DBG_Start()
+    public void DBG_Start(int numPlays)
     {
+        NumPlayers = numPlays;
         DBG_StartVal = true;
     }
 

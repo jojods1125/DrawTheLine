@@ -69,7 +69,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // Send PlayerItem List to GameManager
         PhotonNetwork.LoadLevel("Game");
-        GameFSM.Instance.DBG_Start();
+        GameFSM.Instance.DBG_Start(PhotonNetwork.CurrentRoom.PlayerCount - 1);
     }
 
     public void JoinRoom(string roomName)

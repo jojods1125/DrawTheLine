@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
-    public Dictionary<int, string> PlayerNames = new Dictionary<int, string>();
+
+    public Dictionary<int, string> PlayerNames = new();
+
+    public bool isHost;
 
     public float TimerDuration = 3f;
 
@@ -106,8 +109,22 @@ public class GameManager : MonoBehaviour
 
     public string LookUpPlayerName(int creatorPlayerId)
     {
-        return PlayerNames[creatorPlayerId];
+        return "Namey Name";
     }
+
+    public void AddPlayerRanking(string[] ranking, int creatorPlayerId)
+    {
+
+    }
+
+    public void ClearRoundData()
+    {
+        NetworkManager.aggregateLinePos.Clear();
+        NetworkManager.aggregateRankings.Clear();
+        ResponseDatasUnranked.Clear();
+        ResponseDatasRanked.Clear();
+    }
+
 }
 
 public struct ResponseData

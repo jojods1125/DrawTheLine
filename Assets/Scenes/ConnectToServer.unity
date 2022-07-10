@@ -580,7 +580,7 @@ MonoBehaviour:
   HavePlayed: 0
   CurrentRound: 0
   RoundMax: 3
-  NumPlayers: 4
+  NumPlayers: 2
   DBG_ToMatchVal: 0
   DBG_ToHLobbyVal: 0
   DBG_ToCLobbyVal: 0
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkManager: {fileID: 0}
-  TimerDuration: 3
+  TimerDuration: 30
 --- !u!1 &1634764961
 GameObject:
   m_ObjectHideFlags: 0
