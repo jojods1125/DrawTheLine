@@ -39,8 +39,9 @@ public class ClientAnswers : MonoBehaviour
         m_Response1 = m_Answer1.value;
         m_Response2 = m_Answer2.value;
         Debug.Log("Responses: " + m_Response1 + ", " + m_Response2);
+
         //Do submit things here
-        NextPage.SetActive(true);
+        GameManager.Instance.NetworkManager.OnClickSubmitResponses(m_Response1, m_Response2);
         gameObject.SetActive(false);
     }
 }

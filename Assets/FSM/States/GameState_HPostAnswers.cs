@@ -21,7 +21,7 @@ public class GameState_HPostAnswers : GameState
     {
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
-        GameManager.Instance.NetworkManager.SendResponsesToClients(GameManager.Instance.RetrieveResponses());
+        GameManager.Instance.NetworkManager.SendResponsesToClients(GameManager.Instance.RetrieveResponses(), GameManager.Instance.RetrieveResponseIds());
     }
 
     public override void UpdateLogic()

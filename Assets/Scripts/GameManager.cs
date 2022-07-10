@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class GameManager : MonoBehaviour
     public NetworkManager NetworkManager;
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
-    public List<ResponseData[]> ResponseDatasRanked = new List<ResponseData[]>(); // Collection of rankings from players
+    public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
+    public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
+    public string[] RankedSpectrum;
     public List<ResponseData> AverageResponseDatas = new List<ResponseData>();
 
     public Dictionary<int, string> PlayerNames = new();
@@ -32,20 +35,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        // Sample data
-        var sampleData = new ResponseData();
-        sampleData.LineDrawnAfter = false;
-        sampleData.Ranking = 0;
-        sampleData.CreatorNickname = "joseph";
-        sampleData.CreatorPlayerId = 6;
-        sampleData.Response = "Pepperoni";
- 
-        AverageResponseDatas.Add(sampleData);
-        sampleData.Ranking = 1;
-        AverageResponseDatas.Add(sampleData);
-        sampleData.Ranking = 2;
-        AverageResponseDatas.Add(sampleData);
     }
 
     public void StartCinematic(float waitTime, string cineTitle)
@@ -85,25 +74,30 @@ public class GameManager : MonoBehaviour
 
     public string[] RetrieveResponses()
     {
-        string[] responses = new string[NetworkManager.numberOfPlayers * 2];
-        for (int i = 0; i < responses.Length; i++)
+        string[] responses = new string[GameFSM.Instance.NumPlayers * 2];
+        int index = 0;
+
+        foreach (ResponseData data in ResponseDatasUnranked)
         {
-            responses[i] = "hi";
+            responses[index] = data.Response;
+            index++;
         }
         
         return responses;
     }
 
-    public string[] CalculateAverageRanking()
+    public int[] RetrieveResponseIds()
     {
-        string[] averageRankings = new string[NetworkManager.numberOfPlayers * 2];
-        
-        for (int i = 0; i < averageRankings.Length; i++)
+        int[] ids = new int[GameFSM.Instance.NumPlayers * 2];
+        int index = 0;
+
+        foreach (ResponseData data in ResponseDatasUnranked)
         {
-            averageRankings[i] = "hi";
+            ids[index] = data.CreatorPlayerId;
+            index++;
         }
-        // Calculate here
-        return averageRankings;
+
+        return ids;
     }
 
     public void CreateResponseData(string response, int creatorPlayerId)
@@ -128,6 +122,28 @@ public class GameManager : MonoBehaviour
         NetworkManager.aggregateRankings.Clear();
         ResponseDatasUnranked.Clear();
         ResponseDatasRanked.Clear();
+    }
+
+    public void CollectRanking(string[] ranking)
+    {
+        int index = 0;
+        foreach (string response in ranking)
+        {
+            if (ResponsesRanked.ContainsKey(response))
+            {
+                ResponsesRanked[response] += index;
+            }
+            else
+            {
+                ResponsesRanked.Add(response, index);
+            }
+        }
+    }
+
+    public void CreateRankedSpectrum()
+    {
+        ResponsesRanked.OrderBy(x => x.Value).Select(x => x.Key);
+        RankedSpectrum = ResponsesRanked.Keys.ToArray();
     }
 
 }

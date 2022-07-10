@@ -28,9 +28,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public SortedDictionary<int, string> aggregateLinePos = new(); // Aggregated by clients and handled by Host
 
     [Header("Client")]
-    // Input Fields for Responses
-    public TMP_InputField firstResponse; // Received from UI
-    public TMP_InputField secondResponse; // Received from UI
     // Ranking for Responses
     public List<string> rankingResponse; // Received from UI
     // Line Position for Ranking
@@ -67,7 +64,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             playerID = player.ActorNumber;
             //GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
             GameManager.Instance.isHost = false;
-            GameFSM.Instance.DBG_Start(8);
+            GameFSM.Instance.DBG_Start(numberOfPlayers - 1);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
             Debug.Log(playerID);
@@ -82,11 +79,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     // Client return responses to Host
-    public void OnClickSubmitResponses()
+    public void OnClickSubmitResponses(string firstResponse, string secondResponse)
     {
-        if (firstResponse.text.Length >= 1 && secondResponse.text.Length >= 1)
+        if (firstResponse.Length >= 1 && secondResponse.Length >= 1)
         {
-            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text, playerID);
+            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse, secondResponse, playerID);
             GameFSM.Instance.DBG_ClientSubmit();
         }
     }
@@ -94,7 +91,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void OnClickSubmitRankings()
     {
         // Dummy Info
-        string[] rankings = { "test", "test2", "test3", "test4" };
+        string[] rankings = new string[(numberOfPlayers - 1) * 2];
+        ResponseData[] hold = GameManager.Instance.ResponseDatasRanked[playerID];
+        int index = 0;
+
+        foreach(ResponseData data in hold)
+        {
+            rankings[index] = data.Response;
+            index++;
+        }
+
         view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings, playerID);
         GameFSM.Instance.DBG_ClientSubmit();
     }
@@ -112,9 +118,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         view.RPC("ReceiveHostPrompt", RpcTarget.Others, prompt);
     }
 
-    public void SendResponsesToClients(string[] responses)
+    public void SendResponsesToClients(string[] responses, int[] ids)
     {
-        view.RPC("ReceiveHostResponses", RpcTarget.Others, responses);
+        view.RPC("ReceiveHostResponses", RpcTarget.Others, responses, ids);
     }
 
     public void SendAverageRankingToClients(string[] averageRanking)
@@ -170,11 +176,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host -> Clients
-    public void ReceiveHostResponses(string[] responses)
+    public void ReceiveHostResponses(string[] responses, int[] ids)
     {
         // Assume totalResponses from GameManager has converted to array
         // Clients receive the total responses (every clients' responses) from the Host
         anonymousResponses = new List<string>(responses);
+        
+        for (int i = 0; i < responses.Length; i++)
+        {
+            GameManager.Instance.CreateResponseData(responses[i], ids[i]);
+        }
+
         // Update Client UI
         GameFSM.Instance.DBG_HostPing();
     }
@@ -186,6 +198,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Host will receive the clients' rankings, store them, and average the rankings
         List<string> playerResponse = new List<string>(rankingResponse);
         aggregateRankings.Add(playerID, playerResponse);
+
+        GameManager.Instance.CollectRanking(rankingResponse);
+
         GameFSM.Instance.DBG_IncClientPings();
     }
 
