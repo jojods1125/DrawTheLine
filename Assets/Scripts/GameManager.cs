@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public NetworkManager NetworkManager;
 
+    public List<ResponseData> ResponseDatas = new();
+    public Dictionary<int, string> PlayerNames = new();
+
     public float TimerDuration = 3f;
 
     public static GameManager Instance { get; private set; }
@@ -83,4 +86,24 @@ public class GameManager : MonoBehaviour
         // Calculate here
         return averageRankings;
     }
+
+    public void CreateResponseData(string response, int creatorPlayerId)
+    {
+        ResponseData newData = new ResponseData { CreatorPlayerId = creatorPlayerId, CreatorNickname = LookUpPlayerName(creatorPlayerId), Response = response };
+        ResponseDatas.Add(newData);
+    }
+
+    public string LookUpPlayerName(int creatorPlayerId)
+    {
+        return PlayerNames[creatorPlayerId];
+    }
+}
+
+public struct ResponseData
+{
+    public int CreatorPlayerId;
+    public string CreatorNickname;
+    public string Response;
+    public int Ranking;
+    public bool LineDrawnAfter;
 }
