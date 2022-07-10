@@ -54,6 +54,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom(roomInputField.text, 
                 new RoomOptions() { MaxPlayers = 9, BroadcastPropsChangeToAll = true });
+
+            GameFSM.Instance.DBG_ToHLobby();
         }
     }
 
@@ -65,6 +67,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickPlayButton()
     {
         PhotonNetwork.LoadLevel("Game");
+
+        GameFSM.Instance.DBG_Start();
     }
 
     public void JoinRoom(string roomName)
