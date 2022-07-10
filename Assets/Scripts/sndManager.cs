@@ -26,6 +26,8 @@ public class sndManager : MonoBehaviour
         sndSourceCh[1] = GetComponents<AudioSource>()[1]; //channel 1 is for voiceover
         sndSourceCh[2] = GetComponents<AudioSource>()[2]; //channel 2 is for gameplay sfx
         sndSourceCh[3] = GetComponents<AudioSource>()[3]; //channel 3 is for background sfx
+
+        sndSourceCh[0].volume = 0.25f; //hardcoded music volume because the scene was being edited elsewhere
     }
 
     public void PlaySFX(SFX name)

@@ -132,6 +132,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         print("Cinematic Delayed: " + cineTitle);
 
+        waitTime = 1f; //in case it doesnt get reset by the switch case
+
         //theres no delay after the cinematic ends
         switch (cineTitle)
         {
@@ -153,10 +155,10 @@ public class GameManager : MonoBehaviour
                 break;
             case "Final Scores Cinematic":
                 soundmanager.PlayVO(sndManager.VO.PostGame);
-                waitTime = 0f; //go directly to next state
+                waitTime = 1f; //go directly to next state
                 break;
             case "Intro Cinematic":
-                //do nothing when the intro ends
+                //do nothing
                 break;
             case "Post Answers Cinematic":
                 soundmanager.PlayVO(sndManager.VO.Part2Start);
