@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &379994205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &554824050
 Transform:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd724f576cb20d246962e8e02c6c65d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextPage: {fileID: 758082518}
+  NextPage: {fileID: 1167210871}
 --- !u!1 &1167210871
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,13 +561,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1167210872}
   - component: {fileID: 1167210873}
+  - component: {fileID: 1167210874}
   m_Layer: 0
   m_Name: SurveySays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167210872
 Transform:
   m_ObjectHideFlags: 0
@@ -597,8 +598,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: da0af2c53ebbc3b46bbf5cfabdae5d39, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: e76dc4151c184eb41ac511a33a838346, type: 3}
   m_SortingOrder: 0
+--- !u!114 &1167210874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167210871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90058c1d078a024a91fe41a44ccfd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ListEntryTemplate: {fileID: 9197481963319205126, guid: 94a7961cd60a8164687590072cb0a58e, type: 3}
+  NextPage: {fileID: 0}
 --- !u!1 &1216146519
 GameObject:
   m_ObjectHideFlags: 0

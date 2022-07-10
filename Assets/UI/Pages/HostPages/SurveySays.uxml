@@ -4,7 +4,7 @@
         <ui:VisualElement name="ContentWindow" style="background-color: rgb(208, 202, 194); width: 80%; height: 80%; border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; align-items: center; justify-content: center;">
             <ui:Label text="Sorting Results" display-tooltip-when-elided="true" name="SortingResults" class="TitlePageText" style="position: relative; top: 20px;" />
             <ui:VisualElement name="ResponseContainer" class="SpectrumContainer" style="margin-left: 75px; margin-right: 75px; margin-top: 75px; margin-bottom: 75px;">
-                <ui:ListView focusable="true" name="ResultsList" style="width: 100px; rotate: 90deg; transform-origin: left top;" />
+                <ui:ListView focusable="true" name="ResultsList" style="width: 100px; rotate: -90deg; transform-origin: left top;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -43,7 +43,9 @@ public class GameManager : MonoBehaviour
 
  
         AverageResponseDatas.Add(sampleData);
+        sampleData.Ranking = 1;
         AverageResponseDatas.Add(sampleData);
+        sampleData.Ranking = 2;
         AverageResponseDatas.Add(sampleData);
     }
 
