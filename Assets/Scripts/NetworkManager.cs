@@ -23,7 +23,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public SortedDictionary<int, List<string>> aggregateRankings = new();
     // Average Ranking
     public List<string> averageRanking; // Calculated externally
-    public List<string> averageRankingSplits; // Calculated externally
     // Aggregate Line Positons
     public SortedDictionary<int, string> aggregateLinePos = new(); // Aggregated by clients and handled by Host
 
@@ -208,8 +207,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Host -> Clients
     public void ReceiveHostAverageRanking(string[] averageRanking)
     {
-        // Clients receive the Host's average rankings and then decide
-        averageRankingSplits = new List<string>(averageRanking);
+        GameManager.Instance.RankedSpectrum = averageRanking;
+
         // Update Client UI
         GameFSM.Instance.DBG_HostPing();
     }
