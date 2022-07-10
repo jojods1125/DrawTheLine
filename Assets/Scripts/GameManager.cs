@@ -128,7 +128,14 @@ public class GameManager : MonoBehaviour
         int index = 0;
         foreach (string response in ranking)
         {
-            ResponsesRanked[response] += index;
+            if (ResponsesRanked.ContainsKey(response))
+            {
+                ResponsesRanked[response] += index;
+            }
+            else
+            {
+                ResponsesRanked.Add(response, index);
+            }
         }
     }
 
