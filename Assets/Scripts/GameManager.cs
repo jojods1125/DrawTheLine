@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public NetworkManager NetworkManager;
 
-    public List<ResponseData> ResponseDatas = new();
+    public List<ResponseData> ResponseDatasUnranked = new(); // Collection of responses from players
+    public List<ResponseData[]> ResponseDatasRanked = new(); // Collection of rankings from players
     public Dictionary<int, string> PlayerNames = new();
 
     public float TimerDuration = 3f;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void CreateResponseData(string response, int creatorPlayerId)
     {
         ResponseData newData = new ResponseData { CreatorPlayerId = creatorPlayerId, CreatorNickname = LookUpPlayerName(creatorPlayerId), Response = response };
-        ResponseDatas.Add(newData);
+        ResponseDatasUnranked.Add(newData);
     }
 
     public string LookUpPlayerName(int creatorPlayerId)
