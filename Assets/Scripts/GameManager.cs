@@ -125,12 +125,6 @@ public class GameManager : MonoBehaviour
         ResponseDatasRanked.Clear();
     }
 
-    public void SetClientRanking(bool active)
-    {
-        FindObjectOfType<ClientRanking>().gameObject.SetActive(active);
-    }
-
-
 }
 
 public struct ResponseData
