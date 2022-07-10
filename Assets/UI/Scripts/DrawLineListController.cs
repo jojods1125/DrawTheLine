@@ -51,11 +51,11 @@ public class DrawLineListController
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            var data = gm.ResponseDatasRanked[gm.NetworkManager.playerID][index];
+            var data = gm.RankedSpectrumData[index];
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = gm.ResponseDatasRanked[gm.NetworkManager.playerID];
+        m_ResponseList.itemsSource = gm.RankedSpectrumData;
     }
 
     void OnResponseSelected(IEnumerable<object> selectedItems)

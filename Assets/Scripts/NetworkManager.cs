@@ -208,6 +208,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void ReceiveHostAverageRanking(string[] averageRanking)
     {
         GameManager.Instance.RankedSpectrum = averageRanking;
+        GameManager.Instance.CreateRankedSpectrumData();
 
         // Update Client UI
         GameFSM.Instance.DBG_HostPing();

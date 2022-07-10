@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
     public string[] RankedSpectrum;
     public List<ResponseData> AverageResponseDatas = new List<ResponseData>();
+    public ResponseData[] RankedSpectrumData;
 
     public Dictionary<int, string> PlayerNames = new();
 
@@ -145,6 +146,19 @@ public class GameManager : MonoBehaviour
     {
         ResponsesRanked.OrderBy(x => x.Value).Select(x => x.Key);
         RankedSpectrum = ResponsesRanked.Keys.ToArray();
+        CreateRankedSpectrumData();
+    }
+
+    public void CreateRankedSpectrumData()
+    {
+        RankedSpectrumData = new ResponseData[RankedSpectrum.Length];
+        int index = 0;
+        foreach (string response in RankedSpectrum)
+        {
+            ResponseData newData = new ResponseData { Response = response, LineDrawnAfter = false };
+            RankedSpectrumData[index] = newData;
+            index++;
+        }
     }
 
 }
