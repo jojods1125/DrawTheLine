@@ -15,6 +15,7 @@ public class GameState_CAnswers : GameState
     {
         base.Enter();
         _gameFSM.CurrentRound++;
+        GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
     }
 
     public override void Exit()
@@ -30,6 +31,11 @@ public class GameState_CAnswers : GameState
         if (_gameFSM.DBG_ClientSubmitVal)
         {
             _gameFSM.DBG_ClientSubmitVal = false;
+            stateMachine.ChangeState(_gameFSM.C_Wait);
+        }
+        else if (_gameFSM.DBG_TimerEndVal)
+        {
+            _gameFSM.DBG_TimerEndVal = false;
             stateMachine.ChangeState(_gameFSM.C_Wait);
         }
     }

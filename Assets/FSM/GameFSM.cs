@@ -144,6 +144,13 @@ public class GameFSM : StateMachine
     }
 
     [HideInInspector]
+    public bool DBG_TimerEndVal = false;
+    public void DBG_TimerEnd()
+    {
+        DBG_TimerEndVal = true;
+    }
+
+    [HideInInspector]
     public bool DBG_ReplayVal = false;
     public void DBG_Replay()
     {

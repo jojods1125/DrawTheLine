@@ -557,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583611018}
   - component: {fileID: 1583611017}
+  - component: {fileID: 1583611019}
   m_Layer: 0
   m_Name: StateMachine
   m_TagString: Untagged
@@ -586,6 +587,7 @@ MonoBehaviour:
   DBG_StartVal: 0
   DBG_CineEndVal: 0
   DBG_ClientPings: 0
+  DBG_TimerEndVal: 0
   DBG_ReplayVal: 0
   DBG_ExitVal: 0
   DBG_HostPingVal: 0
@@ -605,6 +607,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1583611019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583611016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59589a9a8c4eb77488f331073857be22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerDuration: 3
 --- !u!1 &1634764961
 GameObject:
   m_ObjectHideFlags: 0

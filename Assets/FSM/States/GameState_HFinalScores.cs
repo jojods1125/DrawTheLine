@@ -14,6 +14,7 @@ public class GameState_HFinalScores : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Final Scores Cinematic");
     }
 
     public override void UpdateLogic()

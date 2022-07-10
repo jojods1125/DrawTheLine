@@ -14,6 +14,7 @@ public class GameState_HSpectrum : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Spectrum Cinematic");
     }
 
     public override void Exit()
