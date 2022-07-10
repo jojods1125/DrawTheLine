@@ -594,7 +594,7 @@ MonoBehaviour:
   rankingResponse: []
   clientScreen: {fileID: 1514205064}
   hostScreen: {fileID: 59534242}
-  hostResponses: {fileID: 0}
+  hostResponses: {fileID: 754212835}
   playerID: 0
 --- !u!4 &396342982
 Transform:

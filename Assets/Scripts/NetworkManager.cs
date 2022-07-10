@@ -83,6 +83,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if (firstResponse.text.Length >= 1 && secondResponse.text.Length >= 1)
         {
             view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text);
+            GameFSM.Instance.DBG_ClientSubmit();
         }
     }
 
@@ -91,12 +92,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Dummy Info
         string[] rankings = { "test", "test2", "test3", "test4" };
         view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings);
+        GameFSM.Instance.DBG_ClientSubmit();
     }
 
     public void OnClickSubmitLine()
     {
         // Dummy Info
         view.RPC("ReceiveClientLine", RpcTarget.MasterClient, "test");
+        GameFSM.Instance.DBG_ClientSubmit();
     }
 
     // Host sending info to clients

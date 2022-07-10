@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     public string LookUpPlayerName(int creatorPlayerId)
     {
-        return PlayerNames[creatorPlayerId];
+        return "Namey Name";
     }
 }
 
