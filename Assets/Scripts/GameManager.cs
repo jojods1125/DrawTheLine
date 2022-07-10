@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public NetworkManager NetworkManager;
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
-    public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
+    public List<ResponseData[]> ResponseDatasRanked = new List<ResponseData[]>(); // Collection of rankings from players
+    public List<ResponseData> AverageResponseDatas = new List<ResponseData>();
 
     public Dictionary<int, string> PlayerNames = new();
 
@@ -39,8 +40,11 @@ public class GameManager : MonoBehaviour
         sampleData.CreatorNickname = "joseph";
         sampleData.CreatorPlayerId = 6;
         sampleData.Response = "Pepperoni";
-        ResponseDatasUnranked.Add(sampleData);
-        ResponseDatasUnranked.Add(sampleData);
+
+ 
+        AverageResponseDatas.Add(sampleData);
+        AverageResponseDatas.Add(sampleData);
+        AverageResponseDatas.Add(sampleData);
     }
 
     public void StartCinematic(float waitTime, string cineTitle)

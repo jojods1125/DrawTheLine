@@ -18,7 +18,7 @@ public class DrawLineListItemController
         mLineLabel = visualElement.Q<Label>("LineLabel");
     }
 
-    public void SetData(ResponseItemDefinition response)
+    public void SetData(ResponseData response)
     {
         if(response.Ranking % 2 == 0)
         {
