@@ -36,24 +36,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Line Position for Ranking
     public (string, string) lineResponse; // Received from UI
 
-    [Header("Temp")]
-    // Client
-    public TMP_Text hostMessage; // Temp
-    public TMP_InputField clientMessage; // Temp
-    // Host
-    public TMP_Text clientMessages; // Temp
-    public TMP_Text messageCounter; // Temp
-    bool hasReceivedMessage = false; // Temp
-    int messagesReceived = 0; // Temp
-
     [Header("UI")]
     // Selects UI Panel based on state and whether host or client
     public GameObject clientScreen;
     public GameObject hostScreen;
+    public TMP_Text hostResponses;
+    bool hasReceivedFirstResponses = false;
 
     PhotonView view;
     Player player;
-    int playerID;
+    public int playerID;
 
 
     private void Start()
@@ -85,41 +77,29 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Potentially Handled by GameManager
     }
 
-    // Temp
-    public void OnClickSend()
+    // Client return responses to Host
+    public void OnClickSubmitResponses()
     {
-        if (clientMessage.text.Length >= 1)
+        if (firstResponse.text.Length >= 1 && secondResponse.text.Length >= 1)
         {
-            view.RPC("ReceiveMessage", RpcTarget.MasterClient, clientMessage.text);
-            clientMessage.text = "Enter new text...";
+            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text);
         }
-        
     }
 
-    // Temp
-
-    [PunRPC]
-    public void SendMessage(int message)
+    public void OnClickSubmitRankings()
     {
-        // Change Log Text
-        hostMessage.text = "Messages: " + message;
+        // Dummy Info
+        string[] rankings = { "test", "test2", "test3", "test4" };
+        view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings);
     }
 
-    [PunRPC]
-    public void ReceiveMessage(string message)
+    public void OnClickSubmitLine()
     {
-        if (!hasReceivedMessage)
-        {
-            hasReceivedMessage = true;
-            clientMessages.text = "";
-        }
-        // Change Log Text
-        clientMessages.text += "\n" + message;
-        messagesReceived++;
-        messageCounter.text = "Messages: " + messagesReceived;
-        view.RPC("SendMessage", RpcTarget.Others, messageCounter);
+        // Dummy Info
+        view.RPC("ReceiveClientLine", RpcTarget.MasterClient, "test");
     }
 
+    // Host sending info to clients
     public void SendPromptToClients(string prompt)
     {
         view.RPC("ReceiveHostPrompt", RpcTarget.Others, prompt);
@@ -139,6 +119,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         view.RPC("ReceiveHostFinalScores", RpcTarget.Others);
     }
+
+    
+
+
 
     #region Network Functions
     [PunRPC]
@@ -160,6 +144,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GameManager.Instance.CreateResponseData(response1, playerID);
         GameManager.Instance.CreateResponseData(response2, playerID);
         // Pings Host and GameManager
+        GameFSM.Instance.DBG_IncClientPings();
+
+        if (!hasReceivedFirstResponses)
+        {
+            hasReceivedFirstResponses = true;
+            hostResponses.text = "";
+        }
+        hostResponses.text += response1 + " " + response2 + "\n";
     }
 
     [PunRPC]
@@ -180,6 +172,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Host will receive the clients' rankings, store them, and average the rankings
         List<string> playerResponse = new List<string>(rankingResponse);
         aggregateRankings.Add(playerID, playerResponse);
+        GameFSM.Instance.DBG_IncClientPings();
     }
 
     [PunRPC]
@@ -198,6 +191,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         // Host will receive the Clients' Line position and display them
         aggregateLinePos.Add(playerID, rankingLine);
+        GameFSM.Instance.DBG_IncClientPings();
     }
 
     [PunRPC]
