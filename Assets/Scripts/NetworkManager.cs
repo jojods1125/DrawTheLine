@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -51,7 +52,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject hostScreen;
 
     PhotonView view;
-
+    Player player;
+    int playerID;
 
 
     private void Start()
@@ -68,6 +70,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         else
         {
             // Add Players to List
+            player = PhotonNetwork.LocalPlayer;
+            playerID = player.ActorNumber;
+            GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
             GameFSM.Instance.DBG_Start();
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
@@ -149,11 +154,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientResponses(string response1, string response2, int playerID)
+    public void ReceiveClientResponses(string response1, string response2)
     {
         // Host will receive the clients' responses and add them to the total responses (array or list)
-        totalResponses.Add(playerID, response1);
-        totalResponses.Add(playerID, response2);
+        GameManager.Instance.CreateResponseData(response1, playerID);
+        GameManager.Instance.CreateResponseData(response2, playerID);
+        // Pings Host and GameManager
     }
 
     [PunRPC]
@@ -169,7 +175,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientsRankings(string[] rankingResponse, int playerID)
+    public void ReceiveClientsRankings(string[] rankingResponse)
     {
         // Host will receive the clients' rankings, store them, and average the rankings
         List<string> playerResponse = new List<string>(rankingResponse);
@@ -188,7 +194,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientLine(string rankingLine, int playerID)
+    public void ReceiveClientLine(string rankingLine)
     {
         // Host will receive the Clients' Line position and display them
         aggregateLinePos.Add(playerID, rankingLine);
