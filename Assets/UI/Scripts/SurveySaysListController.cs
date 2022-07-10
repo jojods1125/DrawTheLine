@@ -46,8 +46,10 @@ public class SurveySaysListController
         m_ResponseList.bindItem = (item, index) =>
         {
             Debug.Log("index: " + index);
-            var data = gm.AverageResponseDatas[index];
-            (item.userData as SurveySaysListItemController).SetData(data);
+            //Debug.Log("index: " +  index + " " + gm.AverageResponseDatas[0] + " " + gm.AverageResponseDatas[1].ToString() + " " + gm.AverageResponseDatas[2].ToString());
+            //var data = gm.AverageResponseDatas[index];
+            //data.Ranking = index;
+            //(item.userData as SurveySaysListItemController).SetData(data);
         };
 
         m_ResponseList.itemsSource = gm.AverageResponseDatas;
