@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
-    public Dictionary<string, float> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
+    public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
     public string[] RankedSpectrum;
 
     public Dictionary<int, string> PlayerNames = new();
@@ -139,10 +139,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public string[] CreateRankedSpectrum()
+    public void CreateRankedSpectrum()
     {
-        var sortedDict = from entry in ResponsesRanked orderby entry.Value ascending select entry;
-        return ((Dictionary<string, int>)sortedDict).Keys.ToArray();
+        ResponsesRanked.OrderBy(x => x.Value).Select(x => x.Key);
+        RankedSpectrum = ResponsesRanked.Keys.ToArray();
     }
 
 }
