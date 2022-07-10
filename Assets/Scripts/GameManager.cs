@@ -18,11 +18,14 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, string> PlayerNames = new();
 
-    public bool isHost;
+    public bool isHost = true;
 
     public float TimerDuration = 3f;
 
     public static GameManager Instance { get; private set; }
+
+    //SOUND STUFF
+    sndManager soundmanager;
 
     private void Awake()
     {
@@ -37,13 +40,158 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        soundmanager = FindObjectOfType<sndManager>().GetComponent<sndManager>();
+        isHost = true;
+
+        soundmanager.PlayMusic(sndManager.MUS.Lobby);
+        //GameManager.Instance.StartCinematic(2f, "Lobby Cinematic");
+    }
+
     public void StartCinematic(float waitTime, string cineTitle)
     {
+        switch (cineTitle)
+        {
+            //case "Lobby Cinematic":
+            //    soundmanager.PlayMusic(sndManager.MUS.Lobby);
+            //    waitTime = 0f;
+            //    break;
+            case "Current Scores Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.Host);
+                switch (GameFSM.Instance.CurrentRound)
+                {
+                    case 1:
+                        soundmanager.PlayVO(sndManager.VO.Scores1b);
+                        waitTime = 5f;
+                        break;
+                    case 2:
+                        soundmanager.PlayVO(sndManager.VO.Scores2b);
+                        waitTime = 5.5f;
+                        break;
+                    case 3:
+                        //do nothing
+                        break;
+                }
+                break;
+            case "Final Scores Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.FinalScores);
+                soundmanager.PlayVO(sndManager.VO.Scores3b);
+                waitTime = 11f;
+                break;
+            case "Intro Cinematic":
+                soundmanager.StopMusic(); //stop music on the clients now that isHost is updated
+                soundmanager.PlayMusic(sndManager.MUS.Lobby);
+                soundmanager.PlayVO(sndManager.VO.IntroNotPlayed);
+                waitTime = 60f + 53f;
+                break;
+            case "Post Answers Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.Host);
+                soundmanager.PlayVO(sndManager.VO.Part1Finish);
+                waitTime = 9.5f;
+                break;
+            case "Prompt Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.Host);
+                switch (GameFSM.Instance.CurrentRound)
+                {
+                    case 1:
+                        soundmanager.PlayVO(sndManager.VO.Part1Start1);
+                        waitTime = 5f;
+                        break;
+                    case 2:
+                        soundmanager.PlayVO(sndManager.VO.Part1Start2);
+                        waitTime = 4f;
+                        break;
+                    case 3:
+                        soundmanager.PlayVO(sndManager.VO.Part1Start3);
+                        waitTime = 5f;
+                        break;
+                }
+                break;
+            case "Results Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.Host);
+                soundmanager.PlayVO(sndManager.VO.Part3Finish);
+                waitTime = 13f;
+                break;
+            case "Spectrum Cinematic":
+                soundmanager.PlayMusic(sndManager.MUS.Host);
+                soundmanager.PlayVO(sndManager.VO.Part2Finish);
+                waitTime = 9.5f;
+                break;
+        }
+
         _coroutine = CinematicDelay(waitTime, cineTitle);
         StartCoroutine(_coroutine);
+
     }
 
     private IEnumerator CinematicDelay(float waitTime, string cineTitle)
+    {
+        yield return new WaitForSeconds(waitTime);
+        print("Cinematic Delayed: " + cineTitle);
+
+        //theres no delay after the cinematic ends
+        switch (cineTitle)
+        {
+            case "Current Scores Cinematic":
+                switch (GameFSM.Instance.CurrentRound)
+                {
+                    case 1:
+                        soundmanager.PlayVO(sndManager.VO.Scores1c);
+                        waitTime = 5f;
+                        break;
+                    case 2:
+                        soundmanager.PlayVO(sndManager.VO.Scores2c);
+                        waitTime = 4.5f;
+                        break;
+                    case 3:
+                        //do nothing
+                        break;
+                }
+                break;
+            case "Final Scores Cinematic":
+                soundmanager.PlayVO(sndManager.VO.PostGame);
+                waitTime = 0f; //go directly to next state
+                break;
+            case "Intro Cinematic":
+                //do nothing when the intro ends
+                break;
+            case "Post Answers Cinematic":
+                soundmanager.PlayVO(sndManager.VO.Part2Start);
+                waitTime = 6f;
+                break;
+            case "Prompt Cinematic":
+                soundmanager.PlayVO(sndManager.VO.Part1After);
+                waitTime = 4.5f;
+                break;
+            case "Results Cinematic":
+                switch (GameFSM.Instance.CurrentRound)
+                {
+                    case 1:
+                        soundmanager.PlayVO(sndManager.VO.Scores1a);
+                        waitTime = 4f;
+                        break;
+                    case 2:
+                        soundmanager.PlayVO(sndManager.VO.Scores2a);
+                        waitTime = 5f;
+                        break;
+                    case 3:
+                        soundmanager.PlayVO(sndManager.VO.Scores3a);
+                        waitTime = 7.5f;
+                        break;
+                }
+                break;
+            case "Spectrum Cinematic":
+                soundmanager.PlayVO(sndManager.VO.Part3Start);
+                waitTime = 10f;
+                break;
+        }
+
+        _coroutine = CinematicEnd(waitTime, cineTitle);
+        StartCoroutine(_coroutine);
+    }
+
+    private IEnumerator CinematicEnd(float waitTime, string cineTitle)
     {
         yield return new WaitForSeconds(waitTime);
         print("Cinematic Ended: " + cineTitle);
@@ -54,6 +202,8 @@ public class GameManager : MonoBehaviour
     {
         _coroutine = TimerDelay(waitTime);
         StartCoroutine(_coroutine);
+
+        soundmanager.PlayMusic(sndManager.MUS.Waiting);
     }
 
     public void CancelTimer()
@@ -66,6 +216,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         print("Timer Activated");
         GameFSM.Instance.DBG_TimerEnd();
+
+        soundmanager.PlaySFX(sndManager.SFX.TimerEnd);
     }
 
     public string GeneratePrompt()

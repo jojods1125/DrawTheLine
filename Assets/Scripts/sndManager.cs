@@ -22,11 +22,7 @@ public class sndManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
-        //only the host can change sounds
-        if (!GameManager.Instance.isHost)
-            return;
-
+    {
         sndSourceCh[0] = GetComponents<AudioSource>()[0]; //channel 0 is for music
         sndSourceCh[1] = GetComponents<AudioSource>()[1]; //channel 1 is for voiceover
         sndSourceCh[2] = GetComponents<AudioSource>()[2]; //channel 2 is for gameplay sfx
@@ -43,89 +39,72 @@ public class sndManager : MonoBehaviour
         switch (name)
         {
             case SFX.CartIn:
-                PlaySoundSource(sndSFXClips[(int)SFX.CartIn], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.CartIn], 3, true);
                 break;
             case SFX.CartOut:
-                PlaySoundSource(sndSFXClips[(int)SFX.CartOut], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.CartOut], 3, true);
                 break;
             case SFX.DrumRoll4s:
-                PlaySoundSource(sndSFXClips[(int)SFX.DrumRoll4s], 2);
+                PlaySoundSource(sndSFXClips[(int)SFX.DrumRoll4s], 2, true);
                 break;
             case SFX.SwitchOff:
-                PlaySoundSource(sndSFXClips[(int)SFX.SwitchOff], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.SwitchOff], 3, true);
                 break;
             case SFX.SwitchOn:
-                PlaySoundSource(sndSFXClips[(int)SFX.SwitchOn], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.SwitchOn], 3, true);
                 break;
             case SFX.MarkerLine:
-                PlaySoundSource(sndSFXClips[(int)SFX.MarkerLine], 2);
+                PlaySoundSource(sndSFXClips[(int)SFX.MarkerLine], 2, true);
                 break;
             case SFX.MarkerPlayer:
-                PlaySoundSource(marker_players[Random.Range(0, marker_players.Length - 1)], 2); //pick random sound
+                PlaySoundSource(marker_players[Random.Range(0, marker_players.Length - 1)], 2, true); //pick random sound
                 break;
             case SFX.MarkerPrompt:
-                PlaySoundSource(marker_prompt[Random.Range(0, marker_prompt.Length - 1)], 2); //pick random sound
+                PlaySoundSource(marker_prompt[Random.Range(0, marker_prompt.Length - 1)], 2, true); //pick random sound
                 break;
             case SFX.PageSlide:
-                PlaySoundSource(pageslide[Random.Range(0, pageslide.Length - 1)], 3); //pick random sound
+                PlaySoundSource(pageslide[Random.Range(0, pageslide.Length - 1)], 3, true); //pick random sound
                 break;
             case SFX.ScreenDown:
-                PlaySoundSource(sndSFXClips[(int)SFX.ScreenDown], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.ScreenDown], 3, true);
                 break;
             case SFX.ScreenUp:
-                PlaySoundSource(sndSFXClips[(int)SFX.ScreenUp], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.ScreenUp], 3, true);
                 break;
             case SFX.TimerEnd:
-                PlaySoundSource(sndSFXClips[(int)SFX.TimerEnd], 3);
+                PlaySoundSource(sndSFXClips[(int)SFX.TimerEnd], 3, true);
                 break;
         }
     }
 
-    public void PlayMusic(GameState state)
+    public void PlayMusic(MUS state)
     {
         //only the host can change music
         if (!GameManager.Instance.isHost)
             return;
 
-        switch (state)
-        {
-            case GameState_Title:
-                PlaySoundSource(sndMusic[(int)MUS.Lobby], 0, false);
-                break;
-            case GameState_Matchmaking:
-                PlaySoundSource(sndMusic[(int)MUS.Lobby], 0, false);
-                break;
-            case GameState_HLobby:
-                PlaySoundSource(sndMusic[(int)MUS.Lobby], 0, false);
-                break;
-            case GameState_HIntro:
-                PlaySoundSource(sndMusic[(int)MUS.Lobby], 0, false);
-                break;
-            case GameState_HPrompt:
-                PlaySoundSource(sndMusic[(int)MUS.Host], 0, false);
-                break;
-            case GameState_HPostAnswers:
-                PlaySoundSource(sndMusic[(int)MUS.Host], 0, false);
-                break;
-            case GameState_HSpectrum:
-                PlaySoundSource(sndMusic[(int)MUS.Host], 0, false);
-                break;
-            case GameState_HResults:
-                PlaySoundSource(sndMusic[(int)MUS.Host], 0, false);
-                break;
-            case GameState_HCurrentScores:
-                PlaySoundSource(sndMusic[(int)MUS.Host], 0, false);
-                break;
-            case GameState_HFinalScores:
-                PlaySoundSource(sndMusic[(int)MUS.FinalScores], 0, false);
-                break;
-            case GameState_HPostGame:
-                PlaySoundSource(sndMusic[(int)MUS.FinalScores], 0, false);
-                break;
-            case GameState_HWait:
-                PlaySoundSource(sndMusic[(int)MUS.Waiting], 0, false);
-                break;
-        }
+        PlaySoundSource(sndMusic[(int)state], 0, false);
+
+        //switch (state)
+        //{
+        //    case MUS.Lobby:
+        //        PlaySoundSource(sndMusic[0], 0, false);
+        //        break;
+        //    case MUS.Host:
+        //        PlaySoundSource(sndMusic[1], 0, false);
+        //        break;
+        //    case MUS.Waiting:
+        //        PlaySoundSource(sndMusic[2], 0, false);
+        //        break;
+        //    case MUS.FinalScores:
+        //        PlaySoundSource(sndMusic[3], 0, false);
+        //        break;
+        //}
+    }
+
+    public void StopMusic()
+    {
+        sndSourceCh[0].Stop();
     }
 
     public void PlayVO (VO vo)
@@ -134,15 +113,20 @@ public class sndManager : MonoBehaviour
         if (!GameManager.Instance.isHost)
             return;
 
-        PlaySoundSource(sndVOClips[(int)vo], 1);
+        PlaySoundSource(sndVOClips[(int)vo], 1, true);
     }
 
-    void PlaySoundSource(AudioClip clip, int channel, bool overwrite = true)
+    void PlaySoundSource(AudioClip clip, int channel, bool overwrite)
     {
         if (!overwrite)
-        {   //dont play sound if it is already playing
-            if (sndSourceCh[channel].clip == clip)
+        {
+            if(sndSourceCh[channel].clip != null)
+            {
+                //dont play sound if it is already playing
+                if (sndSourceCh[channel].clip == clip)
                     return;
+            }
+
         }
 
         sndSourceCh[channel].Stop();
