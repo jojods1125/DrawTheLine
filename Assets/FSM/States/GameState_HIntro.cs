@@ -14,6 +14,7 @@ public class GameState_HIntro : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Intro Cinematic");
     }
 
     public override void UpdateLogic()

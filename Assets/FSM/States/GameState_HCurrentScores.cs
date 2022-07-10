@@ -14,6 +14,7 @@ public class GameState_HCurrentScores : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Current Scores Cinematic");
     }
 
     public override void UpdateLogic()

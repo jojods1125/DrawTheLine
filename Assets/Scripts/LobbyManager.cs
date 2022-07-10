@@ -62,12 +62,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickLeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+        GameFSM.Instance.DBG_Exit();
     }
 
     public void OnClickPlayButton()
     {
         PhotonNetwork.LoadLevel("Game");
-
         GameFSM.Instance.DBG_Start();
     }
 

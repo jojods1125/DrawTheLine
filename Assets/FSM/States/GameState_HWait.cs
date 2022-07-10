@@ -14,15 +14,17 @@ public class GameState_HWait : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
 
-        if (_gameFSM.DBG_ClientPings >= _gameFSM.NumPlayers)
+        if (_gameFSM.DBG_ClientPings >= _gameFSM.NumPlayers || _gameFSM.DBG_TimerEndVal)
         {
             _gameFSM.DBG_ClientPings = 0;
+            _gameFSM.DBG_TimerEndVal = false;
 
             switch (_gameFSM.previousState)
             {

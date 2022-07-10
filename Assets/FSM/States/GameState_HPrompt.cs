@@ -15,6 +15,7 @@ public class GameState_HPrompt : GameState
     {
         base.Enter();
         _gameFSM.CurrentRound++;
+        GameManager.Instance.StartCinematic(2f, "Prompt Cinematic");
     }
 
     public override void Exit()

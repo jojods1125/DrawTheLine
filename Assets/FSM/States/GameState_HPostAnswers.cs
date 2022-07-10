@@ -14,6 +14,7 @@ public class GameState_HPostAnswers : GameState
     public override void Enter()
     {
         base.Enter();
+        GameManager.Instance.StartCinematic(2f, "Post Answers Cinematic");
     }
 
     public override void Exit()
