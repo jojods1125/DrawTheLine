@@ -60,18 +60,14 @@ public class DrawLineListController
 
     void OnResponseSelected(IEnumerable<object> selectedItems)
     {
-        
-        var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
-        
-        if (!selectedResponse.LineDrawnAfter)
-        {
-            for (int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
-            {
-                gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
-            }
-            selectedResponse.LineDrawnAfter = true;
 
+        var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
+
+        for (int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
+        {
+            gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
         }
+       gm.ResponseDatasRanked[gm.NetworkManager.playerID][selectedResponse.Ranking].LineDrawnAfter = true;
         Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);
         m_ResponseList.Rebuild();
 
