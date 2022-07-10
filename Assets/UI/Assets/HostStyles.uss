@@ -41,7 +41,8 @@
 }
 
 .PlayerInitial {
-}
-
-.PlayerNickname {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&guid=114e0a6007e3f9441a9c1f87a114b2d3&type=2#Jenniferhand-Regular SDF');
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgba(255, 255, 255, 255);
 }

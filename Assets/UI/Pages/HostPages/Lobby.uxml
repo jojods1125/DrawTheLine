@@ -6,26 +6,29 @@
         </ui:VisualElement>
         <ui:Label text="JOIN THE GAME" display-tooltip-when-elided="true" class="TitlePageText" />
         <ui:VisualElement name="IconContainer" style="flex-direction: row; width: 100%; -unity-text-align: upper-left; justify-content: center;">
+            <ui:VisualElement name="Player0Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label display-tooltip-when-elided="true" name="Player0" class="PlayerInitial" />
+            </ui:VisualElement>
             <ui:VisualElement name="Player1Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="Jennifer" display-tooltip-when-elided="true" name="Player1" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 25px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player1" class="PlayerInitial" />
             </ui:VisualElement>
             <ui:VisualElement name="Player2Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player2" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player2" class="PlayerInitial" />
             </ui:VisualElement>
             <ui:VisualElement name="Player3Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player3" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player3" class="PlayerInitial" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Player4Icon" class="PlayerIcon" style="margin-left: 5px;">
+                <ui:Label display-tooltip-when-elided="true" name="Player4" class="PlayerInitial" />
             </ui:VisualElement>
             <ui:VisualElement name="Player5Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player5" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player5" class="PlayerInitial" />
             </ui:VisualElement>
             <ui:VisualElement name="Player6Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player6" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player6" class="PlayerInitial" />
             </ui:VisualElement>
             <ui:VisualElement name="Player7Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player7" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="Player8Icon" class="PlayerIcon" style="margin-left: 5px;">
-                <ui:Label text="A" display-tooltip-when-elided="true" name="Player8" class="PlayerInitial" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); font-size: 50px; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                <ui:Label display-tooltip-when-elided="true" name="Player7" class="PlayerInitial" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Button text="Start" display-tooltip-when-elided="true" name="Submit" class="ButtonStyle" />
