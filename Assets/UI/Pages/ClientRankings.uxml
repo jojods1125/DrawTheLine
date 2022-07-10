@@ -12,7 +12,7 @@
         <ui:VisualElement name="InstructionsContainer" style="align-items: flex-start; width: 100%; margin-left: 20%;">
             <ui:Label text="Rank The Responses Accordingly" display-tooltip-when-elided="true" name="InstructionsText" style="align-items: flex-start; width: auto; margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; justify-content: space-between; -unity-text-align: lower-left; -unity-font: url(&apos;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#Arial&apos;); -unity-font-style: bold-and-italic; color: rgb(244, 202, 108);" />
         </ui:VisualElement>
-        <ui:VisualElement name="PlayerInputContainer" style="flex-grow: 1; flex-direction: row; height: 100%; align-items: flex-start; justify-content: center; width: 100%; margin-left: 10px; margin-right: 10px; margin-top: 0; margin-bottom: 10px;">
+        <ui:VisualElement name="PlayerInputContainer" style="flex-grow: 1; flex-direction: row; height: 50%; align-items: flex-start; justify-content: center; width: 100%; margin-left: 10px; margin-right: 10px; margin-top: 0; margin-bottom: 10px;">
             <ui:VisualElement name="ResponsesWindow" class="TestContentWindowStyle ContentWindow ListWindow">
                 <ui:VisualElement name="ResponsesHeader" class="ContentHeader">
                     <ui:Label text="YOUR RESPONSES" display-tooltip-when-elided="true" name="ResponsesTitle" class="HeaderText" style="font-size: 11px;" />
@@ -28,6 +28,7 @@
                 <ui:ListView focusable="true" name="SpectrumListView" virtualization-method="DynamicHeight" class="ResponseList unity-list-view__empty-label" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Button text="Submit Answers" display-tooltip-when-elided="true" name="SubmitButton" style="color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#Arial&apos;); background-color: rgba(244, 202, 108, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;" />
     </ui:VisualElement>
     <ui:VisualElement name="PaperTextureFg" picking-mode="Ignore" class="PaperTextureFg" />
 </ui:UXML>

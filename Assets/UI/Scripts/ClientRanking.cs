@@ -10,6 +10,7 @@ public class ClientRanking : MonoBehaviour
 
     Label m_StageLabel;
     Label m_Prompt;
+    Button m_Submit;
 
     private void OnEnable()
     {
@@ -22,6 +23,9 @@ public class ClientRanking : MonoBehaviour
         //TODO: tie this value to the state machine
         m_StageLabel = uiDocument.rootVisualElement.Q<Label>("StageLabel");
         m_Prompt = uiDocument.rootVisualElement.Q<Label>("PromptText");
+        m_Submit = uiDocument.rootVisualElement.Q<Button>("SubmitButton");
+
+        m_Submit.clicked += SubmitRankings;
     }
 
 
@@ -46,4 +50,9 @@ public class ClientRanking : MonoBehaviour
         }
     }
 
+    void SubmitRankings()
+    {
+        //Do submit things here
+        gameObject.SetActive(false);
+    }
 }

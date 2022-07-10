@@ -110,7 +110,6 @@ public class ResponseListController
         else
         {
             // Move to Spectrum
-            Debug.Log("Move to spectrum: " + selectedResponse + m_ResponseItems.ToString());
             m_SpectrumItems.Add(selectedResponse);
             m_ResponseItems.Remove(selectedResponse);
             FillResponseLists();
@@ -128,7 +127,6 @@ public class ResponseListController
         else
         {
             // Move to Spectrum
-            Debug.Log("Remove from spectrum");
             m_ResponseItems.Add(selectedResponse);
             m_SpectrumItems.Remove(selectedResponse);
             FillResponseLists();

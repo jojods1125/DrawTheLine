@@ -18,10 +18,8 @@ public class ResponseListItemController
 
     public void SetData(ResponseItemDefinition response)
     {
-        Debug.Log("Ranking: " + response.Ranking);
         if(response.Ranking % 2 == 0)
         {
-            Debug.Log("Making it yellow");
             //Set yellow
             mNumberLabel.style.backgroundColor = yellow;
             mResponseLabel.style.backgroundColor = yellow;
@@ -32,8 +30,6 @@ public class ResponseListItemController
             mNumberLabel.style.backgroundColor = white;
             mResponseLabel.style.backgroundColor = white;
         }
-
-        Debug.Log("color:" + mResponseLabel.style.backgroundColor.value);
         mResponseLabel.text = response.Response;
         mNumberLabel.text = response.Ranking.ToString();
     }
