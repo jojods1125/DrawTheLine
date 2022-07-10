@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     public string[] RetrieveResponses()
     {
-        string[] responses = new string[NetworkManager.numberOfPlayers * 2];
+        string[] responses = new string[GameFSM.Instance.NumPlayers * 2];
         int index = 0;
 
         foreach (ResponseData data in ResponseDatasUnranked)
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     public int[] RetrieveResponseIds()
     {
-        int[] ids = new int[NetworkManager.numberOfPlayers * 2];
+        int[] ids = new int[GameFSM.Instance.NumPlayers * 2];
         int index = 0;
 
         foreach (ResponseData data in ResponseDatasUnranked)
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     public string[] CalculateAverageRanking()
     {
-        string[] averageRankings = new string[NetworkManager.numberOfPlayers * 2];
+        string[] averageRankings = new string[GameFSM.Instance.NumPlayers * 2];
         
         for (int i = 0; i < averageRankings.Length; i++)
         {

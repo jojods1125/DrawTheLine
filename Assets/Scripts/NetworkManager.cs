@@ -91,7 +91,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void OnClickSubmitRankings()
     {
         // Dummy Info
-        string[] rankings = new string[numberOfPlayers * 2];
+        string[] rankings = new string[GameFSM.Instance.NumPlayers * 2];
         ResponseData[] hold = GameManager.Instance.ResponseDatasRanked[playerID];
         int index = 0;
 
