@@ -52,6 +52,7 @@ public class DrawLineListController
         m_ResponseList.bindItem = (item, index) =>
         {
             var data = gm.RankedSpectrumData[index];
+            data.Ranking= index;
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
