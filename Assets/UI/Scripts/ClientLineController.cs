@@ -34,7 +34,7 @@ public class ClientLineController : MonoBehaviour
     void SubmitLine()
     {
         //Do submit things here
-        NextPage.SetActive(true);
+        GameManager.Instance.NetworkManager.OnClickSubmitLine();
         gameObject.SetActive(false);
     }
 }

@@ -28,9 +28,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public SortedDictionary<int, string> aggregateLinePos = new(); // Aggregated by clients and handled by Host
 
     [Header("Client")]
-    // Input Fields for Responses
-    public TMP_InputField firstResponse; // Received from UI
-    public TMP_InputField secondResponse; // Received from UI
     // Ranking for Responses
     public List<string> rankingResponse; // Received from UI
     // Line Position for Ranking
@@ -82,11 +79,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     // Client return responses to Host
-    public void OnClickSubmitResponses()
+    public void OnClickSubmitResponses(string firstResponse, string secondResponse)
     {
-        if (firstResponse.text.Length >= 1 && secondResponse.text.Length >= 1)
+        if (firstResponse.Length >= 1 && secondResponse.Length >= 1)
         {
-            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text, playerID);
+            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse, secondResponse, playerID);
             GameFSM.Instance.DBG_ClientSubmit();
         }
     }
