@@ -5,15 +5,16 @@ using UnityEngine.UIElements;
 
 public class DrawLineListController
 {
-    List<ResponseItemDefinition> m_ResponseItems;
 
     VisualTreeAsset m_ListEntryTemplate;
 
     ListView m_ResponseList;
 
+    private GameManager gm;
+
     public void InitializeResponseList(VisualElement root, VisualTreeAsset listElementTemplate)
     {
-        EnumerateAllResponses();
+        gm = GameManager.Instance;
 
         m_ListEntryTemplate = listElementTemplate;
 
@@ -22,13 +23,6 @@ public class DrawLineListController
         FillResponseLists();
 
         m_ResponseList.onSelectionChange += OnResponseSelected;
-    }
-
-    void EnumerateAllResponses()
-    {
-        m_ResponseItems = new List<ResponseItemDefinition>();
-        m_ResponseItems.AddRange(Resources.LoadAll<ResponseItemDefinition>("Responses/Average"));
-        Debug.Log("Length of response list: " + m_ResponseItems.Count);
     }
 
     void FillResponseLists()
@@ -52,30 +46,33 @@ public class DrawLineListController
             return newListEntry;
         };
 
+        List<ResponseData[]> tempList = new();
+        foreach (ResponseData[] dataArray in gm.ResponseDatasRanked.Values)
+        {
+            tempList.Add(dataArray);
+        }
+
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            m_ResponseItems[index].Ranking = index;
-            (item.userData as DrawLineListItemController).SetData(m_ResponseItems[index]);
+            var data = tempList[gm.NetworkManager.playerID][index];
+            (item.userData as DrawLineListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = m_ResponseItems;
+        m_ResponseList.itemsSource = tempList;
     }
 
     void OnResponseSelected(IEnumerable<object> selectedItems)
     {
         
-        var selectedResponse = m_ResponseList.selectedItem as ResponseItemDefinition;
+        var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
         
         if (!selectedResponse.LineDrawnAfter)
         {
             selectedResponse.LineDrawnAfter = true;
-            foreach (ResponseItemDefinition response in m_ResponseItems)
+            for(int i = 0; i < gm.ResponseDatasRanked[gm.NetworkManager.playerID].Length; i++)
             {
-                if (response != selectedResponse)
-                {
-                    response.LineDrawnAfter = false;
-                }
+                gm.ResponseDatasRanked[gm.NetworkManager.playerID][i].LineDrawnAfter = false;
             }
         }
         Debug.Log("Clicked: " + selectedResponse.Ranking + " " + selectedResponse.LineDrawnAfter);

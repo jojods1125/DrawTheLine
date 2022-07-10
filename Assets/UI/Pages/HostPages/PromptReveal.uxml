@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Assets/HostStyles.uss?fileID=7433441132597879392&amp;guid=460ba2173459efc42bca6c8e1d6eab5f&amp;type=3#HostStyles" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Assets/ProjectorScreenBackground.png?fileID=2800000&amp;guid=e88f8e8273cec5a469cc0fa5070ee01c&amp;type=3#ProjectorScreenBackground&apos;); -unity-background-scale-mode: scale-and-crop; align-items: center; justify-content: center;">
+        <ui:VisualElement name="ContentWindow" style="background-color: rgb(208, 202, 194); width: 80%; height: 80%; border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; align-items: center; justify-content: center;">
+            <ui:Label text="Prompt 1" display-tooltip-when-elided="true" name="PromptNumber" class="TitlePageText" style="position: absolute; top: 20px;" />
+            <ui:Label text="TOPPINGS THAT REALLY REALLY REALLY REALLY rEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEALLY BELONG ON PEEZAAA" display-tooltip-when-elided="true" name="Prompt" class="TitlePageText" style="font-size: 50px; white-space: normal; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

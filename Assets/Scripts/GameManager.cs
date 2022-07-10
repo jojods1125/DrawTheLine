@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public NetworkManager NetworkManager;
 
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
+    public List<ResponseData> AverageResponseDatas = new List<ResponseData>();
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
     public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
     public string[] RankedSpectrum;

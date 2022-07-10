@@ -17,7 +17,7 @@ public class ResponseListController
     {
         gm = GameManager.Instance;
 
-        EnumerateAllResponses();
+        m_SpectrumItems = new List<ResponseData>();
 
         m_ListEntryTemplate = listElementTemplate;
 
@@ -28,13 +28,6 @@ public class ResponseListController
 
         m_ResponseList.onSelectionChange += OnResponseSelected;
         m_SpectrumList.onSelectionChange += OnSpectrumSelected;
-    }
-
-    void EnumerateAllResponses()
-    {
-
-        m_SpectrumItems = new List<ResponseData>();
-
     }
 
     void FillResponseLists()
