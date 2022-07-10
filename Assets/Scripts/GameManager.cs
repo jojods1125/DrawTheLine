@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, string> PlayerNames = new Dictionary<int, string>();
 
+    public bool isHost;
+
     public float TimerDuration = 3f;
 
     public static GameManager Instance { get; private set; }
