@@ -82,7 +82,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (firstResponse.text.Length >= 1 && secondResponse.text.Length >= 1)
         {
-            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text);
+            view.RPC("ReceiveClientResponses", RpcTarget.MasterClient, firstResponse.text, secondResponse.text, playerID);
             GameFSM.Instance.DBG_ClientSubmit();
         }
     }
@@ -91,14 +91,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         // Dummy Info
         string[] rankings = { "test", "test2", "test3", "test4" };
-        view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings);
+        view.RPC("ReceiveClientsRankings", RpcTarget.MasterClient, rankings, playerID);
         GameFSM.Instance.DBG_ClientSubmit();
     }
 
     public void OnClickSubmitLine()
     {
         // Dummy Info
-        view.RPC("ReceiveClientLine", RpcTarget.MasterClient, "test");
+        view.RPC("ReceiveClientLine", RpcTarget.MasterClient, "test", playerID);
         GameFSM.Instance.DBG_ClientSubmit();
     }
 
@@ -141,7 +141,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientResponses(string response1, string response2)
+    public void ReceiveClientResponses(string response1, string response2, int playerID)
     {
         // Host will receive the clients' responses and add them to the total responses (array or list)
         GameManager.Instance.CreateResponseData(response1, playerID);
@@ -170,7 +170,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientsRankings(string[] rankingResponse)
+    public void ReceiveClientsRankings(string[] rankingResponse, int playerID)
     {
         // Host will receive the clients' rankings, store them, and average the rankings
         List<string> playerResponse = new List<string>(rankingResponse);
@@ -190,7 +190,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [PunRPC]
     // Host <- Clients
-    public void ReceiveClientLine(string rankingLine)
+    public void ReceiveClientLine(string rankingLine, int playerID)
     {
         // Host will receive the Clients' Line position and display them
         aggregateLinePos.Add(playerID, rankingLine);
