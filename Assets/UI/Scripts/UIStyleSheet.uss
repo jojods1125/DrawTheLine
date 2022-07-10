@@ -183,6 +183,8 @@
 }
 
 .ResponseList {
+    width: 100%;
+    height: 100%;
 }
 
 .unity-base-text-field > .unity-base-text-field__input {
