@@ -69,7 +69,7 @@ public class DrawLineListController
             gm.RankedSpectrumData[i].LineDrawnAfter = false;
         }
        gm.RankedSpectrumData[selectedResponse.Ranking].LineDrawnAfter = true;
-        Debug.Log("Clicked: " + gm.RankedSpectrumData[selectedResponse.Ranking].LineDrawnAfter + " " + selectedResponse.LineDrawnAfter);
+        Debug.Log("Clicked: " + gm.RankedSpectrumData[selectedResponse.Ranking].LineDrawnAfter + " " + selectedResponse.Ranking);
         m_ResponseList.Rebuild();
 
     }
