@@ -15,6 +15,7 @@ public class GameState_CLine : GameState
     {
         base.Enter();
         GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
+        UIManager.Instance.SetClientLine(true);
     }
 
     public override void Exit()
@@ -22,6 +23,8 @@ public class GameState_CLine : GameState
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
         GameManager.Instance.ClearRoundData();
+        GameManager.Instance.CancelTimer();
+        UIManager.Instance.SetClientLine(false);
     }
 
     public override void UpdateLogic()

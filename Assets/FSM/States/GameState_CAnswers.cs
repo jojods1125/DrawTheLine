@@ -16,12 +16,15 @@ public class GameState_CAnswers : GameState
         base.Enter();
         _gameFSM.CurrentRound++;
         GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
+        UIManager.Instance.SetClientAnswers(true);
     }
 
     public override void Exit()
     {
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
+        GameManager.Instance.CancelTimer();
+        UIManager.Instance.SetClientAnswers(false);
     }
 
     public override void UpdateLogic()

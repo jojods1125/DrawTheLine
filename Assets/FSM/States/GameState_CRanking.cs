@@ -15,12 +15,15 @@ public class GameState_CRanking : GameState
     {
         base.Enter();
         GameManager.Instance.StartTimer(GameManager.Instance.TimerDuration);
+        UIManager.Instance.SetClientRanking(true);
     }
 
     public override void Exit()
     {
         base.Exit();
         _gameFSM.DBG_HostPingVal = false;
+        GameManager.Instance.CancelTimer();
+        UIManager.Instance.SetClientRanking(false);
     }
 
     public override void UpdateLogic()

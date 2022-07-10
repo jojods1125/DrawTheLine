@@ -34,7 +34,7 @@ public class ClientRanking : MonoBehaviour
     void SubmitRankings()
     {
         //Do submit things here
-        NextPage.SetActive(true);
+        GameManager.Instance.NetworkManager.OnClickSubmitRankings();
         gameObject.SetActive(false);
     }
 }

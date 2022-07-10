@@ -14,12 +14,14 @@ public class GameState_CWait : GameState
     public override void Enter()
     {
         base.Enter();
+        UIManager.Instance.SetClientWait(true);
     }
 
     public override void Exit()
     {
         base.Exit();
         _gameFSM.DBG_ClientSubmitVal = false;
+        UIManager.Instance.SetClientWait(false);
     }
 
     public override void UpdateLogic()

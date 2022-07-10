@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Pepperoni" display-tooltip-when-elided="true" name="Text" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;);" />
+</ui:UXML>
