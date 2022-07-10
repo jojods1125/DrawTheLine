@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &379994205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +428,80 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 843de7e3320f1004a9771d0793b6a22b, type: 3}
   m_SortingOrder: 0
+--- !u!1 &1440333777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440333780}
+  - component: {fileID: 1440333779}
+  - component: {fileID: 1440333778}
+  m_Layer: 0
+  m_Name: StateMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1440333778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440333777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59589a9a8c4eb77488f331073857be22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkManager: {fileID: 0}
+  TimerDuration: 3
+--- !u!114 &1440333779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440333777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f69cc1b72de1440b844b263bbcd1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HavePlayed: 0
+  CurrentRound: 0
+  RoundMax: 3
+  NumPlayers: 4
+  DBG_ToMatchVal: 0
+  DBG_ToHLobbyVal: 0
+  DBG_ToCLobbyVal: 0
+  DBG_StartVal: 0
+  DBG_CineEndVal: 0
+  DBG_ClientPings: 0
+  DBG_TimerEndVal: 0
+  DBG_ReplayVal: 0
+  DBG_ExitVal: 0
+  DBG_HostPingVal: 0
+  DBG_ClientSubmitVal: 0
+--- !u!4 &1440333780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440333777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483093989
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1483093991
 MonoBehaviour:
   m_ObjectHideFlags: 0

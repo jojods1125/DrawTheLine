@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public NetworkManager NetworkManager;
 
-    public List<ResponseData> ResponseDatasUnranked = new(); // Collection of responses from players
-    public List<ResponseData[]> ResponseDatasRanked = new(); // Collection of rankings from players
-    public Dictionary<int, string> PlayerNames = new();
+    public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
+    public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
+    public Dictionary<int, string> PlayerNames = new Dictionary<int, string>();
 
     public float TimerDuration = 3f;
 
@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        // Sample data
+        var sampleData = new ResponseData();
+        sampleData.LineDrawnAfter = false;
+        sampleData.Ranking = 0;
+        sampleData.CreatorNickname = "joseph";
+        sampleData.CreatorPlayerId = 6;
+        sampleData.Response = "Pepperoni";
+        ResponseDatasUnranked.Add(sampleData);
+        ResponseDatasUnranked.Add(sampleData);
     }
 
     public void StartCinematic(float waitTime, string cineTitle)

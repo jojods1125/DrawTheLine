@@ -5,8 +5,7 @@ using UnityEngine.UIElements;
 
 public class ResponseListController
 {
-    List<ResponseItemDefinition> m_ResponseItems;
-    List<ResponseItemDefinition> m_SpectrumItems;
+    List<ResponseData> m_SpectrumItems;
     VisualTreeAsset m_ListEntryTemplate;
 
     ListView m_ResponseList;
@@ -29,11 +28,8 @@ public class ResponseListController
 
     void EnumerateAllResponses()
     {
-        m_ResponseItems = new List<ResponseItemDefinition>();
-        m_ResponseItems.AddRange(Resources.LoadAll<ResponseItemDefinition>("Responses"));
-        Debug.Log("Length of response list: " + m_ResponseItems.Count);
 
-        m_SpectrumItems = new List<ResponseItemDefinition>();
+        m_SpectrumItems = new List<ResponseData>();
 
     }
 
@@ -61,11 +57,13 @@ public class ResponseListController
         // Set up bind function for a specific list entry
         m_ResponseList.bindItem = (item, index) =>
         {
-            m_ResponseItems[index].Ranking = index;
-            (item.userData as ResponseListItemController).SetData(m_ResponseItems[index]);
+
+            var data = GameManager.Instance.ResponseDatasUnranked[index];
+            data.Ranking = index;
+            (item.userData as ResponseListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = m_ResponseItems;
+        m_ResponseList.itemsSource = GameManager.Instance.ResponseDatasUnranked;
 
         /////////////////////////// spectrum /////////////////////
 
@@ -92,8 +90,9 @@ public class ResponseListController
         // Set up bind function for a specific list entry
         m_SpectrumList.bindItem = (item, index) =>
         {
-            m_SpectrumItems[index].Ranking = index;
-            (item.userData as ResponseListItemController).SetData(m_SpectrumItems[index]);
+            var data = m_SpectrumItems[index];
+            data.Ranking = index;
+            (item.userData as ResponseListItemController).SetData(data);
         };
 
         m_SpectrumList.itemsSource = m_SpectrumItems;
@@ -101,36 +100,22 @@ public class ResponseListController
 
     void OnResponseSelected(IEnumerable<object> selectedItems)
     {
-        var selectedResponse = m_ResponseList.selectedItem as ResponseItemDefinition;
-        if (selectedResponse == null)
-        {
-            //Probably nothing
-
-        }
-        else
-        {
-            // Move to Spectrum
-            m_SpectrumItems.Add(selectedResponse);
-            m_ResponseItems.Remove(selectedResponse);
-            FillResponseLists();
-        }
+        var selectedResponse = (ResponseData)m_ResponseList.selectedItem;
+        // Move to Spectrum
+        m_SpectrumItems.Add(selectedResponse);
+        GameManager.Instance.ResponseDatasUnranked.Remove(selectedResponse);
+        GameManager.Instance.ResponseDatasRanked[0 /*TODO CHANGE TO PLAYER ID*/] = m_SpectrumItems.ToArray();
+        FillResponseLists();
     }
 
     void OnSpectrumSelected(IEnumerable<object> selectedItems)
     {
-        var selectedResponse = m_SpectrumList.selectedItem as ResponseItemDefinition;
-        if (selectedResponse == null)
-        {
-            //Probably nothing
+        var selectedResponse = (ResponseData)m_SpectrumList.selectedItem;
 
-        }
-        else
-        {
-            // Move to Spectrum
-            m_ResponseItems.Add(selectedResponse);
-            m_SpectrumItems.Remove(selectedResponse);
-            FillResponseLists();
-
-        }
+        // Move to Spectrum
+        GameManager.Instance.ResponseDatasUnranked.Add(selectedResponse);
+        m_SpectrumItems.Remove(selectedResponse);
+        GameManager.Instance.ResponseDatasRanked[0 /*TODO CHANGE TO PLAYER ID*/] = m_SpectrumItems.ToArray();
+        FillResponseLists();
     }
 }
