@@ -64,6 +64,7 @@ public class LobbyController : MonoBehaviour
     void StartButtonPressed()
     {
         //Todo: delete this dummy data
+
         PlayerAdded(0, "Joseph");
         PlayerAdded(1, "Joseph");
         PlayerAdded(2, "Joseph");
