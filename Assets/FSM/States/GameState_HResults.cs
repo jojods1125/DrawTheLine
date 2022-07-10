@@ -15,6 +15,13 @@ public class GameState_HResults : GameState
     {
         base.Enter();
         GameManager.Instance.StartCinematic(2f, "Results Cinematic");
+        UIManager.Instance.SetHostResults(true);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        UIManager.Instance.SetHostResults(false);
     }
 
     public override void UpdateLogic()

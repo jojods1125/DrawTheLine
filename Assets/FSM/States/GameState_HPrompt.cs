@@ -16,6 +16,7 @@ public class GameState_HPrompt : GameState
         base.Enter();
         _gameFSM.CurrentRound++;
         GameManager.Instance.StartCinematic(2f, "Prompt Cinematic");
+        UIManager.Instance.SetHostPrompt(true);
     }
 
     public override void Exit()
@@ -23,6 +24,7 @@ public class GameState_HPrompt : GameState
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
         GameManager.Instance.NetworkManager.SendPromptToClients(GameManager.Instance.GeneratePrompt());
+        UIManager.Instance.SetHostPrompt(false);
     }
 
     public override void UpdateLogic()

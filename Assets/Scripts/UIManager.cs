@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
     public GameObject ClientRanking;
     public GameObject ClientLine;
 
+    public GameObject HostLobby;
+    public GameObject HostPrompt;
+    public GameObject HostSpectrum;
+    public GameObject HostResults;
+
 
 
     private void Awake()
@@ -45,5 +50,25 @@ public class UIManager : MonoBehaviour
     public void SetClientLine(bool active)
     {
         ClientLine.SetActive(active);
+    }
+
+    public void SetLobby(bool active)
+    {
+        HostLobby.SetActive(active);
+    }
+
+    public void SetHostPrompt(bool active)
+    {
+        HostPrompt.SetActive(active);
+    }
+
+    public void SetHostSpectrum(bool active)
+    {
+        HostSpectrum.SetActive(active);
+    }
+
+    public void SetHostResults(bool active)
+    {
+        HostResults.SetActive(active);
     }
 }

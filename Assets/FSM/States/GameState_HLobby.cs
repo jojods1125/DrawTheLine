@@ -14,6 +14,13 @@ public class GameState_HLobby : GameState
     public override void Enter()
     {
         base.Enter();
+        UIManager.Instance.SetLobby(true);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        UIManager.Instance.SetLobby(false);
     }
 
     public override void UpdateLogic()
