@@ -68,4 +68,49 @@ public class NetworkManager : MonoBehaviour
         messageCounter.text = "Messages: " + messagesReceived;
         view.RPC("SendMessage", RpcTarget.Others, messageCounter);
     }
+
+    #region Network Functions
+    [PunRPC]
+    //Host -> Clients
+    public void ReceiveHostPrompt(string prompt)
+    {
+        // Change Client Prompt to Host's new Prompt
+        // Host will wait for Client's responses
+    }
+
+    [PunRPC]
+    // Host <- Clients
+    public void ReceiveClientResponses(string response1, string response2)
+    {
+        // Host will receive the clients' responses and add them to the total responses (array or list)
+    }
+
+    [PunRPC]
+    // Host -> Clients
+    public void ReceiveHostResponses(string[] responses)
+    {
+        // Clients receive the total responses (every clients' responses) from the Host
+    }
+
+    [PunRPC]
+    // Host <- Clients
+    public void ReceiveClientsRankings(string[] responses)
+    {
+        // Host will receive the clients' rankings, store them, and average the rankings
+    }
+
+    [PunRPC]
+    // Host -> Clients
+    public void ReceiveHostAverageRanking((string, string)[] averageRanking)
+    {
+        // Clients receive the Host's average rankings and then decide
+    }
+
+    [PunRPC]
+    // Host <- Clients
+    public void ReceiveClientLine((string, string)[] rankingLine)
+    {
+        // Host will receive the Clients' Line position and display them
+    }
+    #endregion
 }
