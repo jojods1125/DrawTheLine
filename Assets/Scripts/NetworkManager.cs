@@ -57,6 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             clientScreen.SetActive(false);
             hostScreen.SetActive(true);
+            GameManager.Instance.isHost = true;
             // Set numberOfPlayers = GameManager.Instance ...
         }
         else
@@ -65,6 +66,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             player = PhotonNetwork.LocalPlayer;
             playerID = player.ActorNumber;
             //GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
+            GameManager.Instance.isHost = false;
             GameFSM.Instance.DBG_Start(8);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
