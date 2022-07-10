@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
     {
         return "Namey Name";
     }
+
+    public void AddPlayerRanking(string[] ranking, int creatorPlayerId)
+    {
+
+    }
 }
 
 public struct ResponseData

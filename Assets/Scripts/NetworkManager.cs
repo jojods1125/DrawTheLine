@@ -20,12 +20,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Anonymous Responses
     public List<string> anonymousResponses;
     // Aggregate Rankings
-    public SortedDictionary<int, List<string>> aggregateRankings;
+    public SortedDictionary<int, List<string>> aggregateRankings = new();
     // Average Ranking
     public List<string> averageRanking; // Calculated externally
     public List<string> averageRankingSplits; // Calculated externally
     // Aggregate Line Positons
-    public SortedDictionary<int, string> aggregateLinePos; // Aggregated by clients and handled by Host
+    public SortedDictionary<int, string> aggregateLinePos = new(); // Aggregated by clients and handled by Host
 
     [Header("Client")]
     // Input Fields for Responses
