@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         sampleData.CreatorNickname = "joseph";
         sampleData.CreatorPlayerId = 6;
         sampleData.Response = "Pepperoni";
-
  
         AverageResponseDatas.Add(sampleData);
         sampleData.Ranking = 1;

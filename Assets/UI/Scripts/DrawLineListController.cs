@@ -20,6 +20,8 @@ public class DrawLineListController
 
         m_ResponseList = root.Q<ListView>("LineList");
 
+        Debug.Log("m_ResponseList: " + m_ResponseList.ToString());
+
         FillResponseLists();
 
         m_ResponseList.onSelectionChange += OnResponseSelected;
@@ -53,7 +55,7 @@ public class DrawLineListController
             (item.userData as DrawLineListItemController).SetData(data);
         };
 
-        m_ResponseList.itemsSource = gm.ResponseDatasRanked;
+        m_ResponseList.itemsSource = gm.ResponseDatasRanked[gm.NetworkManager.playerID];
     }
 
     void OnResponseSelected(IEnumerable<object> selectedItems)
