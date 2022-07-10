@@ -31,16 +31,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        // Sample data
-        var sampleData = new ResponseData();
-        sampleData.LineDrawnAfter = false;
-        sampleData.Ranking = 0;
-        sampleData.CreatorNickname = "joseph";
-        sampleData.CreatorPlayerId = 6;
-        sampleData.Response = "Pepperoni";
-        ResponseDatasUnranked.Add(sampleData);
-        ResponseDatasUnranked.Add(sampleData);
     }
 
     public void StartCinematic(float waitTime, string cineTitle)
