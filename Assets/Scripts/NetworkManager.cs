@@ -57,6 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             clientScreen.SetActive(false);
             hostScreen.SetActive(true);
+            GameManager.Instance.isHost = true;
             // Set numberOfPlayers = GameManager.Instance ...
         }
         else
@@ -64,10 +65,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             // Add Players to List
             player = PhotonNetwork.LocalPlayer;
             playerID = player.ActorNumber;
-            GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
+            //GameManager.Instance.PlayerNames.Add(player.ActorNumber, player.NickName);
+            GameManager.Instance.isHost = false;
             GameFSM.Instance.DBG_Start(8);
             clientScreen.SetActive(true);
             hostScreen.SetActive(false);
+            Debug.Log(playerID);
+            view.RPC("ReceiveClientInfo", RpcTarget.MasterClient, player.NickName, playerID);
         }
         // Reset Variables - ResetVariables();
     }
@@ -128,6 +132,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     #region Network Functions
+    [PunRPC]
+    public void ReceiveClientInfo(string nickName, int playerID)
+    {
+        // Adds Player Info to Host Gamamanager
+        GameManager.Instance.PlayerNames.Add(playerID, nickName);
+    }
+
     [PunRPC]
     //Host -> Clients
     public void ReceiveHostPrompt(string prompt)
