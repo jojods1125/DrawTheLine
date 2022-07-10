@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Scripts/UIStyleSheet.uss?fileID=7433441132597879392&amp;guid=9999bcdf93553924ca776453cd945c97&amp;type=3#UIStyleSheet" />
+    <ui:VisualElement name="Background" class="BackgroundStyle">
+        <ui:Label text="THIS PAGE IS INTENTIONALLY LEFT BLANK" display-tooltip-when-elided="true" name="IntentionallyBlank" style="-unity-font: url(&apos;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#Arial&apos;); border-left-color: rgba(244, 202, 108, 255); border-right-color: rgba(244, 202, 108, 255); border-top-color: rgba(244, 202, 108, 255); border-bottom-color: rgba(244, 202, 108, 255); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; -unity-font-style: bold; white-space: normal; color: rgba(244, 202, 108, 255); padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="PaperTextureFg" picking-mode="Ignore" class="PaperTextureFg" />
+</ui:UXML>
