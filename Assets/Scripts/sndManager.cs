@@ -16,7 +16,7 @@ public class sndManager : MonoBehaviour
     [HideInInspector]
     public enum MUS { Lobby, Host, Waiting, FinalScores }
 
-    public enum VO { IntroNotPlayed, IntoPlayed, Part1Start1, Part1Start2, Part1Start3, Part1After, Part1Reminder, Part1Finish, Part2Start, Part2Reminder, Part2Finish, Part3Start, Part3Finish, Scores1, Scores2, Scores3, PostGame}
+    public enum VO { IntroNotPlayed, IntoPlayed, Part1Start1, Part1Start2, Part1Start3, Part1After, Part1Reminder, Part1Finish, Part2Start, Part2Reminder, Part2Finish, Part3Start, Part3Finish, Scores1a, Scores1b, Scores1c, Scores2a, Scores2b, Scores2c, Scores3a, Scores3b, PostGame}
 
     private AudioSource[] sndSourceCh = new AudioSource[4];
 
