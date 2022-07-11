@@ -18,8 +18,6 @@ public class PromptRevealController : MonoBehaviour
 
         m_PromptNumber = uiDocument.rootVisualElement.Q<Label>("PromptNumber");
         m_Prompt = uiDocument.rootVisualElement.Q<Label>("Prompt");
-
-        m_Prompt.visible = false;
         
         ChangePrompt(GameManager.Instance.GeneratePrompt(), GameFSM.Instance.CurrentRound);
         RevealPrompt();
