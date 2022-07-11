@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     public float TimerDuration = 3f;
 
+    public PromptList promptsSO;
+    private string[] prompts;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -72,7 +75,13 @@ public class GameManager : MonoBehaviour
 
     public string GeneratePrompt()
     {
-        return "Prompt";
+        //initialize the prompts list from the scriptabble object
+        if(prompts.Length == 0)
+        {
+            prompts = promptsSO.prompts;
+        } 
+
+        return prompts[UnityEngine.Random.Range(0, prompts.Length)];
     }
 
     public string[] RetrieveResponses()
