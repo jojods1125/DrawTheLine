@@ -226,6 +226,18 @@ public class GameManager : MonoBehaviour
         soundmanager.PlaySFX(sndManager.SFX.TimerEnd);
     }
 
+    public void DelayPrompt()
+    {
+        _coroutine = PromptDelay(0.5f);
+        StartCoroutine(_coroutine);
+    }
+
+    private IEnumerator PromptDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        UIManager.Instance.SetHostPrompt(true);
+    }
+
     public string GeneratePrompt()
     {
         return "Prompt";

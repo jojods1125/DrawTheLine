@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject ClientRanking;
     public GameObject ClientLine;
 
+    public GameObject BGR;
     public GameObject HostLobby;
     public GameObject HostPrompt;
     public GameObject HostSpectrum;
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
     public void SetLobby(bool active)
     {
         HostLobby.SetActive(active);
+        BGR.SetActive(!active);
     }
 
     public void SetHostPrompt(bool active)

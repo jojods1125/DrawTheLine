@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,15 @@ public class GameState_HPrompt : GameState
         base.Enter();
         _gameFSM.CurrentRound++;
         GameManager.Instance.StartCinematic(2f, "Prompt Cinematic");
-        UIManager.Instance.SetHostPrompt(true);
+        try
+        {
+            UIManager.Instance.SetHostPrompt(true);
+        }
+        catch (UnassignedReferenceException e)
+        {
+            GameManager.Instance.DelayPrompt();
+        }
+        
     }
 
     public override void Exit()
