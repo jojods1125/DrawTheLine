@@ -23,6 +23,7 @@ public class ClientRanking : MonoBehaviour
         m_Submit = uiDocument.rootVisualElement.Q<Button>("SubmitButton");
 
         m_Submit.clicked += SubmitRankings;
+        SetPrompt(GameManager.Instance.CurrentPrompt);
     }
 
 

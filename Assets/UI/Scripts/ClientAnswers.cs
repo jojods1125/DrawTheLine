@@ -26,6 +26,7 @@ public class ClientAnswers : MonoBehaviour
         m_Answer2 = uiDocument.rootVisualElement.Q<TextField>("SecondResponse");
 
         m_Submit.clicked += SubmitRankings;
+        SetPrompt(GameManager.Instance.CurrentPrompt);
     }
 
 

@@ -20,6 +20,7 @@ public class PromptRevealController : MonoBehaviour
         m_Prompt = uiDocument.rootVisualElement.Q<Label>("Prompt");
 
         m_Prompt.visible = false;
+        ChangePrompt(GameManager.Instance.CurrentPrompt, GameFSM.Instance.CurrentRound);
     }
 
     public void ChangePrompt(string prompt, int roundNumber)

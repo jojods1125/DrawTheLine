@@ -23,6 +23,7 @@ public class ClientLineController : MonoBehaviour
         m_Submit = uiDocument.rootVisualElement.Q<Button>("SubmitButton");
 
         m_Submit.clicked += SubmitLine;
+        SetPrompt(GameManager.Instance.CurrentPrompt);
     }
 
 
