@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     //SOUND STUFF
-    sndManager soundmanager;
+    public sndManager soundmanager;
 
     private void Awake()
     {
@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
         soundmanager.PlayMusic(sndManager.MUS.Lobby);
         //GameManager.Instance.StartCinematic(2f, "Lobby Cinematic");
     }
+
+
 
     public void StartCinematic(float waitTime, string cineTitle)
     {
@@ -85,10 +87,16 @@ public class GameManager : MonoBehaviour
                 waitTime = 11f;
                 break;
             case "Intro Cinematic":
-                soundmanager.StopMusic(); //stop music on the clients now that isHost is updated
+                if(!isHost)
+                    soundmanager.StopMusic(); //stop music on the clients now that isHost is updated
+                
                 soundmanager.PlayMusic(sndManager.MUS.Lobby);
-                soundmanager.PlayVO(sndManager.VO.IntroNotPlayed);
-                waitTime = 60f + 53f;
+
+                PlayIntroVideo();
+                //GetComponentInChildren<UnityEngine.Video.VideoPlayer>().Play();
+
+                //soundmanager.PlayVO(sndManager.VO.IntroNotPlayed);
+                waitTime = 60f + 58f;
                 break;
             case "Post Answers Cinematic":
                 soundmanager.PlayMusic(sndManager.MUS.Host);
@@ -216,6 +224,24 @@ public class GameManager : MonoBehaviour
     public void CancelTimer()
     {
         StopCoroutine(_coroutine);
+    }
+
+    void PlayIntroVideo()
+    {
+        //create video component
+        GameObject camera = GameObject.Find("Main Camera");
+        var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
+
+        //set player settings
+        videoPlayer.playOnAwake = false;
+        videoPlayer.isLooping = false;
+        videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
+
+        string filepath = Application.streamingAssetsPath + "/introvideo.mp4";
+        videoPlayer.url = filepath;
+
+        //play the video
+        videoPlayer.Play();
     }
 
     private IEnumerator TimerDelay(float waitTime)
