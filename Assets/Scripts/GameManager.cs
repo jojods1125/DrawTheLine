@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
             prompts = promptsSO.prompts;
         } 
 
-        return prompts[UnityEngine.Random.Range(0, prompts.Length)];
+        return prompts[UnityEngine.Random.Range(0, prompts.Length) - 1];
     }
 
     public string[] RetrieveResponses()
