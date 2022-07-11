@@ -624,6 +624,7 @@ MonoBehaviour:
   RankedSpectrum: []
   isHost: 0
   TimerDuration: 300
+  promptsSO: {fileID: 11400000, guid: 0176ea6b72368c446a2b71183f5a6186, type: 2}
 --- !u!1 &1634764961
 GameObject:
   m_ObjectHideFlags: 0
