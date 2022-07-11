@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public float TimerDuration = 3f;
 
     public PromptList promptsSO;
-    private string[] prompts;
 
     public string CurrentPrompt;
 
@@ -246,11 +245,7 @@ public class GameManager : MonoBehaviour
     public string GeneratePrompt()
     {
         //initialize the prompts list from the scriptabble object
-        if(prompts.Length == 0)
-        {
-            prompts = promptsSO.prompts;
-        }
-        CurrentPrompt = prompts[UnityEngine.Random.Range(0, prompts.Length) - 1];
+        CurrentPrompt = promptsSO.prompts[UnityEngine.Random.Range(0, promptsSO.prompts.Length - 1)];
         return CurrentPrompt;
     }
 
