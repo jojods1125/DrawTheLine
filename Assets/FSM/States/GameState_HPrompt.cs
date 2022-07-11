@@ -32,7 +32,7 @@ public class GameState_HPrompt : GameState
     {
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
-        GameManager.Instance.NetworkManager.SendPromptToClients(GameManager.Instance.GeneratePrompt());
+        GameManager.Instance.NetworkManager.SendPromptToClients(GameManager.Instance.CurrentPrompt);
         UIManager.Instance.SetHostPrompt(false);
     }
 

@@ -151,6 +151,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Change Client Prompt to Host's new Prompt
         currentPrompt = prompt;
         // Update Client UI
+        GameManager.Instance.CurrentPrompt = prompt;
         // Host will wait for Client's responses
         GameFSM.Instance.DBG_HostPing();
     }
