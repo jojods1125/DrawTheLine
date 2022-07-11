@@ -10,6 +10,7 @@ public class SurveySaysListItemController
     public void SetVisualElement(VisualElement visualElement)
     {
         mResponseLabel = visualElement.Q<Label>("ResponseLabel");
+        m_Line = visualElement.Q<Label>("Line");
     }
 
     public void SetData(ResponseData response)
@@ -19,6 +20,10 @@ public class SurveySaysListItemController
         if (response.LineDrawnAfter)
         {
             m_Line.style.backgroundColor = new Color(1.0f, 0f, 0f);
+        }
+        else
+        {
+            m_Line.style.backgroundColor = Color.white;
         }
 
     }

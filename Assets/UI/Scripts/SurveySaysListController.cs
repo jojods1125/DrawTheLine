@@ -9,7 +9,6 @@ public class SurveySaysListController
     VisualTreeAsset m_ListEntryTemplate;
 
     ListView m_ResponseList;
-    VisualElement m_Line;
     GameManager gm;
 
     public void InitializeResponseList(VisualElement root, VisualTreeAsset listElementTemplate)
@@ -18,7 +17,6 @@ public class SurveySaysListController
         m_ListEntryTemplate = listElementTemplate;
 
         m_ResponseList = root.Q<ListView>("ResultsList");
-        m_Line = root.Q<VisualElement>("Line");
 
         FillResponseLists();
     }
