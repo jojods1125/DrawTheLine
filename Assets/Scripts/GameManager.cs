@@ -345,6 +345,8 @@ public class GameManager : MonoBehaviour
 
             index++;
         }
+
+        AverageResponseDatas = RankedSpectrumData.ToList();
     }
 
 }
