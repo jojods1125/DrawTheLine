@@ -21,6 +21,7 @@ public class PromptRevealController : MonoBehaviour
 
         m_Prompt.visible = false;
         ChangePrompt(GameManager.Instance.CurrentPrompt, GameFSM.Instance.CurrentRound);
+        RevealPrompt();
     }
 
     public void ChangePrompt(string prompt, int roundNumber)
