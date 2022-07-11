@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943d6328399be10438e1083d0907569c, type: 3}
   m_Name: PromptList
   m_EditorClassIdentifier: 
-  prompts: []
+  prompts:
+  - PROMPTY THE PRONOT
+  - WOULD YOU EAT A CHICKEN
+  - COULD NOT
+  - FUCK

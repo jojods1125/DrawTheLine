@@ -16,6 +16,7 @@ public class GameState_HSpectrum : GameState
         base.Enter();
         GameManager.Instance.StartCinematic(2f, "Spectrum Cinematic");
         GameManager.Instance.CreateRankedSpectrum();
+        UIManager.Instance.SetHostSpectrum(true);
     }
 
     public override void Exit()
@@ -23,6 +24,7 @@ public class GameState_HSpectrum : GameState
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
         GameManager.Instance.NetworkManager.SendAverageRankingToClients(GameManager.Instance.RankedSpectrum);
+        UIManager.Instance.SetHostSpectrum(false);
     }
 
     public override void UpdateLogic()

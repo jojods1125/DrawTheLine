@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public NetworkManager NetworkManager;
 
+    public ConnectToServer ConnectToServer;
+
     public List<ResponseData> ResponseDatasUnranked = new List<ResponseData>(); // Collection of responses from players
     public Dictionary<int, ResponseData[]> ResponseDatasRanked = new Dictionary<int, ResponseData[]>(); // Collection of rankings from players
     public Dictionary<string, int> ResponsesRanked = new(); // The combined ranking of the responses based on user rankings
@@ -25,7 +27,8 @@ public class GameManager : MonoBehaviour
     public float TimerDuration = 3f;
 
     public PromptList promptsSO;
-    private string[] prompts;
+
+    public string CurrentPrompt;
 
     public static GameManager Instance { get; private set; }
 
@@ -227,15 +230,23 @@ public class GameManager : MonoBehaviour
         soundmanager.PlaySFX(sndManager.SFX.TimerEnd);
     }
 
+    public void DelayPrompt()
+    {
+        _coroutine = PromptDelay(0.5f);
+        StartCoroutine(_coroutine);
+    }
+
+    private IEnumerator PromptDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        UIManager.Instance.SetHostPrompt(true);
+    }
+
     public string GeneratePrompt()
     {
         //initialize the prompts list from the scriptabble object
-        if(prompts.Length == 0)
-        {
-            prompts = promptsSO.prompts;
-        } 
-
-        return prompts[UnityEngine.Random.Range(0, prompts.Length) - 1];
+        CurrentPrompt = promptsSO.prompts[UnityEngine.Random.Range(0, promptsSO.prompts.Length - 1)];
+        return CurrentPrompt;
     }
 
     public string[] RetrieveResponses()

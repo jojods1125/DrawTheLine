@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,24 @@ public class GameState_HPrompt : GameState
         base.Enter();
         _gameFSM.CurrentRound++;
         GameManager.Instance.StartCinematic(2f, "Prompt Cinematic");
+        GameManager.Instance.GeneratePrompt();
+        try
+        {
+            UIManager.Instance.SetHostPrompt(true);
+        }
+        catch (UnassignedReferenceException e)
+        {
+            GameManager.Instance.DelayPrompt();
+        }
+        
     }
 
     public override void Exit()
     {
         base.Exit();
         _gameFSM.DBG_ClientPings = 0;
-        GameManager.Instance.NetworkManager.SendPromptToClients(GameManager.Instance.GeneratePrompt());
+        GameManager.Instance.NetworkManager.SendPromptToClients(GameManager.Instance.CurrentPrompt);
+        UIManager.Instance.SetHostPrompt(false);
     }
 
     public override void UpdateLogic()
