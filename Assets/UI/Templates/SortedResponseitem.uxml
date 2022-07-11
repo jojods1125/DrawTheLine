@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="Container" style="justify-content: center; align-items: center;">
-        <ui:Label text="Pepperoni" display-tooltip-when-elided="true" name="Text" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); justify-content: center;" />
-        <ui:VisualElement name="Line" style="background-color: rgba(255, 0, 0, 255); height: 5px; flex-direction: column-reverse; width: 100%;" />
+        <ui:Label text="Pepperoni" display-tooltip-when-elided="true" name="ResponseLabel" style="-unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Jenniferhand-Regular%20SDF.asset?fileID=11400000&amp;guid=114e0a6007e3f9441a9c1f87a114b2d3&amp;type=2#Jenniferhand-Regular SDF&apos;); justify-content: center;" />
+        <ui:VisualElement name="Line" style="background-color: rgb(255, 0, 0); height: 5px; flex-direction: column-reverse; width: 100%;" />
     </ui:VisualElement>
 </ui:UXML>
