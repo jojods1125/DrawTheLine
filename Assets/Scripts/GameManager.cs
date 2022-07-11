@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public PromptList promptsSO;
     private string[] prompts;
 
+    public string CurrentPrompt;
+
     public static GameManager Instance { get; private set; }
 
     //SOUND STUFF
@@ -247,9 +249,9 @@ public class GameManager : MonoBehaviour
         if(prompts.Length == 0)
         {
             prompts = promptsSO.prompts;
-        } 
-
-        return prompts[UnityEngine.Random.Range(0, prompts.Length) - 1];
+        }
+        CurrentPrompt = prompts[UnityEngine.Random.Range(0, prompts.Length) - 1];
+        return CurrentPrompt;
     }
 
     public string[] RetrieveResponses()
