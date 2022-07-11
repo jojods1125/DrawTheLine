@@ -31,6 +31,6 @@ public class PromptRevealController : MonoBehaviour
     }
     public void RevealPrompt()
     {
-        m_Prompt.visible = true;
+        m_Prompt.text = gm.CurrentPrompt;
     }
 }
