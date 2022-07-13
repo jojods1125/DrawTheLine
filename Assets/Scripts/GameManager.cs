@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float TimerDuration = 3f;
 
     public PromptList promptsSO;
+    List<string> promptsdeck = new List<string>();
 
     public string CurrentPrompt;
 
@@ -245,7 +246,16 @@ public class GameManager : MonoBehaviour
     public string GeneratePrompt()
     {
         //initialize the prompts list from the scriptabble object
-        CurrentPrompt = promptsSO.prompts[UnityEngine.Random.Range(0, promptsSO.prompts.Length - 1)];
+        //CurrentPrompt = promptsSO.prompts[UnityEngine.Random.Range(0, promptsSO.prompts.Length - 1)];
+
+        //reshuffle deck if theres no more prompts (also initializes it for the first time it's called)
+        if (promptsdeck.Count <= 0)
+            promptsdeck = promptsSO.prompts.ToList();
+
+        int position = UnityEngine.Random.Range(0, promptsdeck.Count - 1);
+        CurrentPrompt = promptsdeck[position];
+        promptsdeck.RemoveAt(position); //to prevent duplicates
+
         return CurrentPrompt;
     }
 
