@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prompts:
   - Toppings that belong on pizza
-  - Worst place to get married
-  - Best TV show to fall asleep to
-  - Worst boardgame to play with grandma
-  - Best Disney Channel Original Movie
-  - Worst movie to watch with your ex
-  - Worst place for a first date
-  - Foods that would be good deepfried
-  - Best minecraft block
-  - Animals that should have 2 legs instead of 4
+  - Places to get married
+  - Exciting TV shows
+  - Boardgames to play with grandma
+  - Best Disney Channel Original Movies
+  - Movies to watch with your ex
+  - Places for a first date
+  - Foods that are good when deepfried
+  - Best Minecraft block
+  - Animals that should have 2 legs
   - Fruits that should be vegetables
   - Ride most likely to make Mickey cry at Disney World
-  - The worst age to get married
-  - Lamest super power to be given
+  - Best age to get married
+  - Best super power to have
   - Most painful year K-12
   - Best jellybean flavor to give your sibling
-  - Worst way to ruin a picnic
-  - Your least favorite person to argue with
+  - Ways to ruin a picnic
+  - People to argue with
   - Animals to keep as pets
   - Fast food place with the best fries
   - Most likely people to be in the illuminati
-  - Worst candy to get stuck in teeth
+  - Candy to get stuck in teeth
   - Board games to play with your grandma
   - Best number
   - Best letter of the alphabet
@@ -49,17 +49,18 @@ MonoBehaviour:
   - Ways to help you go to sleep
   - Reasons to go to war over
   - The eleventh commandment
-  - Best excuses for being late
+  - Excuses for being late
   - Top class fieldtrip destinations
   - Best alternatives to pencils
   - Things that fit in your lap
   - Bugs that you would eat
-  - Home Alone traps you wouldn't want to experience
-  - Best Pringles flavor
-  - Best Oreos flavor
+  - Effective Home Alone traps
+  - The next Pringles flavor
+  - The next Oreos flavor
   - Reasons not to buy a car
   - Alternatives to horse racing
   - Things to run over in the trolley problem
-  - Worst way to catch COVID
-  - Least likely celebrity to become President of the US
-  - Most nostalgic kids TV show
+  - Ways to catch COVID
+  - Celebrities that could become President of the US
+  - Nostalgic kids TV shows
+  - Refreshing Drinks
